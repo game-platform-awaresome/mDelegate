@@ -38,6 +38,8 @@ static M185SDKManager *_manager = nil;
 - (void)sayHi {
     NSLog(@"%s -> hi",__func__);
     self.interesing = @"";
+    NSLog(@"测试成功了");
+    
 }
 
 #pragma mark - app delegate
