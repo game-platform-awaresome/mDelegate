@@ -8,12 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		B5B12A022100761100C1EED5 /* M185SDK.h in Headers */ = {isa = PBXBuildFile; fileRef = B5B12A002100761100C1EED5 /* M185SDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5B12A0B210076A600C1EED5 /* M185SDKManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B5B12A09210076A600C1EED5 /* M185SDKManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5B12A0C210076A600C1EED5 /* M185SDKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B12A0A210076A600C1EED5 /* M185SDKManager.m */; };
+		B5B12A3C210078D500C1EED5 /* M185AppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = B5B12A3B210078D500C1EED5 /* M185AppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B5B129FD2100761100C1EED5 /* M185SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = M185SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B12A002100761100C1EED5 /* M185SDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185SDK.h; sourceTree = "<group>"; };
 		B5B12A012100761100C1EED5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5B12A09210076A600C1EED5 /* M185SDKManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185SDKManager.h; sourceTree = "<group>"; };
+		B5B12A0A210076A600C1EED5 /* M185SDKManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185SDKManager.m; sourceTree = "<group>"; };
+		B5B12A3B210078D500C1EED5 /* M185AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185AppDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,9 +53,28 @@
 			isa = PBXGroup;
 			children = (
 				B5B12A002100761100C1EED5 /* M185SDK.h */,
+				B5B12A3A210078A300C1EED5 /* M185AppDelegate */,
+				B5B12A082100766D00C1EED5 /* M185SDKManager */,
 				B5B12A012100761100C1EED5 /* Info.plist */,
 			);
 			path = M185SDK;
+			sourceTree = "<group>";
+		};
+		B5B12A082100766D00C1EED5 /* M185SDKManager */ = {
+			isa = PBXGroup;
+			children = (
+				B5B12A09210076A600C1EED5 /* M185SDKManager.h */,
+				B5B12A0A210076A600C1EED5 /* M185SDKManager.m */,
+			);
+			path = M185SDKManager;
+			sourceTree = "<group>";
+		};
+		B5B12A3A210078A300C1EED5 /* M185AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				B5B12A3B210078D500C1EED5 /* M185AppDelegate.h */,
+			);
+			path = M185AppDelegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -60,6 +85,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5B12A022100761100C1EED5 /* M185SDK.h in Headers */,
+				B5B12A3C210078D500C1EED5 /* M185AppDelegate.h in Headers */,
+				B5B12A0B210076A600C1EED5 /* M185SDKManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5B12A0C210076A600C1EED5 /* M185SDKManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,11 +291,13 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = M185SDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = Sans.M185SDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -286,11 +316,13 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = M185SDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = Sans.M185SDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

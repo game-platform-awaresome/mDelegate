@@ -16,4 +16,7 @@ FOUNDATION_EXPORT const unsigned char M185SDKVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <M185SDK/PublicHeader.h>
 
+#import <M185SDK/M185SDKManager.h>
+#import <M185SDK/M185AppDelegate.h>
+
 
