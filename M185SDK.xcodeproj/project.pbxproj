@@ -11,6 +11,8 @@
 		B5B12A0B210076A600C1EED5 /* M185SDKManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B5B12A09210076A600C1EED5 /* M185SDKManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5B12A0C210076A600C1EED5 /* M185SDKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B12A0A210076A600C1EED5 /* M185SDKManager.m */; };
 		B5B12A3C210078D500C1EED5 /* M185AppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = B5B12A3B210078D500C1EED5 /* M185AppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5B12A512101BFD800C1EED5 /* M185NetWorkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B5B12A4F2101BFD800C1EED5 /* M185NetWorkManager.h */; };
+		B5B12A522101BFD800C1EED5 /* M185NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B12A502101BFD800C1EED5 /* M185NetWorkManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		B5B12A09210076A600C1EED5 /* M185SDKManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185SDKManager.h; sourceTree = "<group>"; };
 		B5B12A0A210076A600C1EED5 /* M185SDKManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185SDKManager.m; sourceTree = "<group>"; };
 		B5B12A3B210078D500C1EED5 /* M185AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185AppDelegate.h; sourceTree = "<group>"; };
+		B5B12A4F2101BFD800C1EED5 /* M185NetWorkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185NetWorkManager.h; sourceTree = "<group>"; };
+		B5B12A502101BFD800C1EED5 /* M185NetWorkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185NetWorkManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				B5B12A002100761100C1EED5 /* M185SDK.h */,
+				B5B12A4E2101BFAB00C1EED5 /* M185NetWorkManager */,
 				B5B12A3A210078A300C1EED5 /* M185AppDelegate */,
 				B5B12A082100766D00C1EED5 /* M185SDKManager */,
 				B5B12A012100761100C1EED5 /* Info.plist */,
@@ -77,6 +82,15 @@
 			path = M185AppDelegate;
 			sourceTree = "<group>";
 		};
+		B5B12A4E2101BFAB00C1EED5 /* M185NetWorkManager */ = {
+			isa = PBXGroup;
+			children = (
+				B5B12A4F2101BFD800C1EED5 /* M185NetWorkManager.h */,
+				B5B12A502101BFD800C1EED5 /* M185NetWorkManager.m */,
+			);
+			path = M185NetWorkManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -85,6 +99,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5B12A022100761100C1EED5 /* M185SDK.h in Headers */,
+				B5B12A512101BFD800C1EED5 /* M185NetWorkManager.h in Headers */,
 				B5B12A3C210078D500C1EED5 /* M185AppDelegate.h in Headers */,
 				B5B12A0B210076A600C1EED5 /* M185SDKManager.h in Headers */,
 			);
@@ -157,6 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5B12A522101BFD800C1EED5 /* M185NetWorkManager.m in Sources */,
 				B5B12A0C210076A600C1EED5 /* M185SDKManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

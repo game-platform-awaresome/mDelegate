@@ -7,7 +7,8 @@
 //
 
 #import "M185SDKManager.h"
-
+#import "M185NetWorkManager.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @interface M185SDKManager ()
 
@@ -20,9 +21,6 @@ static M185SDKManager *_manager = nil;
     @public
     NSString *_interesting;
 
-    @private
-
-    @protected
 }
 
 + (M185SDKManager *)sharedManager {
@@ -37,9 +35,17 @@ static M185SDKManager *_manager = nil;
 
 - (void)sayHi {
     NSLog(@"%s -> hi",__func__);
-    self.interesing = @"";
-    NSLog(@"测试成功了");
-    
+
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:2];
+    [dict setObject:@"1" forKey:@"page"];
+    [dict setObject:[self signWithParms:dict WithKeys:@[@"page"]] forKey:@"sign"];
+    postRequest(dict, @"http://www.mech1688.com/index.php?g=api&m=Dynamic&a=index", ^(NSDictionary *content) {
+        NSLog(@" success ->  %@ ",content);
+    }, ^(NSDictionary *content) {
+        NSLog(@" failure ->  %@ ",content);
+    }, ^(NSDictionary *content) {
+        NSLog(@" warning ->  %@ ",content);
+    });
 }
 
 #pragma mark - app delegate
@@ -103,6 +109,48 @@ static M185SDKManager *_manager = nil;
 
 
 @synthesize interesing = _interesting;
+- (void)setInteresing:(NSString *)interesing  {
+    _interesting = interesing;
+    NSLog(@"======%@" ,interesing);
+}
+
+
+- (NSString *)interesing {
+    return _interesting;
+}
+
+
+/** 签名 */
+- (NSString *)signWithParms:(NSDictionary *)params WithKeys:(NSArray *)keys {
+    NSMutableString *signString = [NSMutableString string];
+    [keys enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [signString appendString:obj];
+        [signString appendString:@"="];
+        if (params[obj] == nil) {
+            return ;
+        }
+        [signString appendString:params[obj]];
+        if (idx < keys.count - 1) {
+            [signString appendString:@"&"];
+        }
+    }];
+    NSString *key = @"&#@KH^2892JY&@(220(@f";
+    [signString appendString:key];
+    return [self md5:signString];
+}
+
+- (NSString *)md5:(NSString *)input {
+    const char *cStr = [input UTF8String];
+    unsigned char digest[CC_MD5_DIGEST_LENGTH];
+    CC_MD5( cStr, (unsigned int)strlen(cStr), digest );
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        //注意：这边如果是x则输出32位小写加密字符串，如果是X则输出32位大写字符串
+        [output appendFormat:@"%02x", digest[i]];
+    return  output;
+}
+
+
 
 
 
