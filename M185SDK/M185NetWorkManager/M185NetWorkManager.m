@@ -11,6 +11,7 @@
 
 NSURL * cheackUrl(id url);
 NSData * encodeParam(id param , NSStringEncoding encodeing);
+NSString *md5String(NSString * input);
 
 int postRequest(id param, id url, NetWorkSuccessBlock success, NetWorkFailureBlock failure, NetWorkWarningBlock warning) {
     NSURL *safeUrl = cheackUrl(url);
@@ -148,7 +149,16 @@ NSData * encodeParam(id param , NSStringEncoding encoding) {
 
 
 
-
+NSString *md5String(NSString * input) {
+    const char *cStr = [input UTF8String];
+    unsigned char digest[CC_MD5_DIGEST_LENGTH];
+    CC_MD5( cStr, (unsigned int)strlen(cStr), digest );
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        //注意：这边如果是x则输出32位小写加密字符串，如果是X则输出32位大写字符串
+        [output appendFormat:@"%02x", digest[i]];
+    return  output;
+}
 
 
 
@@ -183,18 +193,13 @@ NSData * encodeParam(id param , NSStringEncoding encoding) {
     }];
     NSString *key = @"&#@KH^2892JY&@(220(@f";
     [signString appendString:key];
-    return [self md5:signString];
+    return md5String(signString);
 }
 
+
 - (NSString *)md5:(NSString *)input {
-    const char *cStr = [input UTF8String];
-    unsigned char digest[CC_MD5_DIGEST_LENGTH];
-    CC_MD5( cStr, (unsigned int)strlen(cStr), digest );
-    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
-    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
-        //注意：这边如果是x则输出32位小写加密字符串，如果是X则输出32位大写字符串
-        [output appendFormat:@"%02x", digest[i]];
-    return  output;
+
+    return  nil;
 }
 
 
