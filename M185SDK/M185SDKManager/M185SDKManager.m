@@ -8,7 +8,13 @@
 
 #import "M185SDKManager.h"
 #import "M185NetWorkManager.h"
-#import <CommonCrypto/CommonDigest.h>
+#import "M185DefaultSDK.h"
+
+#import "M185PayManager.h"
+#import "M185UserManager.h"
+#import "M185StatisticsManager.h"
+#import "M185CustomServersManager.h"
+
 
 @interface M185SDKManager ()
 
@@ -33,122 +39,165 @@ static M185SDKManager *_manager = nil;
     return _manager;
 }
 
-- (void)sayHi {
-    NSLog(@"%s -> hi",__func__);
 
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:2];
-    [dict setObject:@"1" forKey:@"page"];
-    [dict setObject:[self signWithParms:dict WithKeys:@[@"page"]] forKey:@"sign"];
-    postRequest(dict, @"http://www.mech1688.com/index.php?g=api&m=Dynamic&a=index", ^(NSDictionary *content) {
-        NSLog(@" success ->  %@ ",content);
-    }, ^(NSDictionary *content) {
-        NSLog(@" failure ->  %@ ",content);
-    }, ^(NSDictionary *content) {
-        NSLog(@" warning ->  %@ ",content);
-    });
+- (void)initSDKWith:(id)info {
+    
+}
+
+- (void)initWithRH_AppID:(NSString *)RH_appID
+           WithRH_AppKey:(NSString *)RH_appKey
+       WithRH_ChannelIDL:(NSString *)RH_channelID
+               WithAppID:(NSString *)appID
+           WithClientKey:(NSString *)clientKey
+    WithCallBackDelegate:(id<M185CallBackDelegate>)callBackDelegate {
+    
+    if (RH_appID == nil) {
+        NSLog(@"%s -> param error",__func__);
+        return;
+    }
+    if (RH_appKey == nil) {
+        NSLog(@"%s -> param error",__func__);
+        return;
+    }
+    if (RH_channelID == nil) {
+        NSLog(@"%s -> param error",__func__);
+        return;
+    }
+    if (appID == nil) {
+        NSLog(@"%s -> param error",__func__);
+        return;
+    }
+    if (clientKey == nil) {
+        NSLog(@"%s -> param error",__func__);
+        return;
+    }
+    if (callBackDelegate == nil) {
+        NSLog(@"%s -> call back delelgate not found",__func__);
+        return;
+    }
+    self.RH_appID = RH_appID;
+    self.RH_appKey = RH_appKey;
+    self.RH_channelID = RH_channelID;
+    self.appID = appID;
+    self.clientKey = clientKey;
+    self.delegate = callBackDelegate;
+    //上报设备
+    [M185CustomServersManager upLoadDeviceInfo];
 }
 
 #pragma mark - app delegate
 // UIapplication 事件
 - (void)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+    [[M185DefaultSDK sharedSDK] application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-
+    [[M185DefaultSDK sharedSDK] applicationWillResignActive:application];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-
+    [[M185DefaultSDK sharedSDK] applicationDidEnterBackground:application];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-
+    [[M185DefaultSDK sharedSDK] applicationWillEnterForeground:application];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-
+    [[M185DefaultSDK sharedSDK] applicationDidBecomeActive:application];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-
+    [[M185DefaultSDK sharedSDK] applicationWillTerminate:application];
 }
 
 // 推送通知相关事件
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken {
-
+    [[M185DefaultSDK sharedSDK] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error {
-
+    [[M185DefaultSDK sharedSDK] application:application didFailToRegisterForRemoteNotificationsWithError:error];
 }
 
 - (void)application:(UIApplication*)application didReceiveLocalNotification:(UILocalNotification*)notification {
-
+    [[M185DefaultSDK sharedSDK] application:application didReceiveLocalNotification:notification];
 }
 
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo {
-
+    [[M185DefaultSDK sharedSDK] application:application didReceiveRemoteNotification:userInfo];
 }
 
 // url处理
 - (BOOL)application:(UIApplication*)application openURL:(NSURL*)url sourceApplication:(NSString*)sourceApplication annotation:(id)annotation {
-    return YES;
+    return [[M185DefaultSDK sharedSDK] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL*)url options:(NSDictionary *)options {
-    return YES;
+    return [[M185DefaultSDK sharedSDK] application:app openURL:url options:options];
 }
 
 - (BOOL)application:(UIApplication*)application handleOpenURL:(NSURL *)url {
-    return YES;
+    return [[M185DefaultSDK sharedSDK] application:application handleOpenURL:url];
+}
+
+#pragma mark - user delegate
++ (void)login {
+    if ([M185SDKManager sharedManager].isLogin == YES) {
+        return;
+    }
+    [M185UserManager login];
+}
+
++ (void)logOut {
+    [M185SDKManager sharedManager].isLogin = NO;
+    [M185UserManager logOut];
+}
+
++ (void)showUserCenter {
+    [M185UserManager showUserCenter];
+}
+
++ (void)loginWithCustom:(id)customData {
+    [M185UserManager loginWithCustom:customData];
+}
+
+#pragma pay delegate
++ (void)payStartWithConfig:(M185PayConfig *)config {
+    [M185CustomServersManager pay:config];
+}
+
++ (void)payStartWithCustom:(id)customData {
+    [M185PayManager payStartWithCustom:customData];
+}
+
+
+#pragma mark - staitc delegate
++ (void)submitDataWith:(M185SubmitData *)data {
+    [M185StatisticsManager submitDataWith:data];
+}
+
++ (void)submitDataWithCustom:(id)customData {
+    [M185StatisticsManager submitDataWithCustom:customData];
+}
+
+
+#pragma mark - gm delegate
++ (void)initGMWithDictionary:(NSDictionary *)dict {
+    
+}
+
++ (void)initGMWithServerid:(NSString *)serverID ServerName:(NSString *)serverName RoleID:(NSString *)roleID RoleName:(NSString *)roleName {
+    
 }
 
 
 
-
-
-@synthesize interesing = _interesting;
-- (void)setInteresing:(NSString *)interesing  {
-    _interesting = interesing;
-    NSLog(@"======%@" ,interesing);
+#pragma mark - getter
+- (NSString *)urlString {
+    return @"http://dev.185sy.com";
 }
 
-
-- (NSString *)interesing {
-    return _interesting;
-}
-
-
-/** 签名 */
-- (NSString *)signWithParms:(NSDictionary *)params WithKeys:(NSArray *)keys {
-    NSMutableString *signString = [NSMutableString string];
-    [keys enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [signString appendString:obj];
-        [signString appendString:@"="];
-        if (params[obj] == nil) {
-            return ;
-        }
-        [signString appendString:params[obj]];
-        if (idx < keys.count - 1) {
-            [signString appendString:@"&"];
-        }
-    }];
-    NSString *key = @"&#@KH^2892JY&@(220(@f";
-    [signString appendString:key];
-    return [self md5:signString];
-}
-
-- (NSString *)md5:(NSString *)input {
-    const char *cStr = [input UTF8String];
-    unsigned char digest[CC_MD5_DIGEST_LENGTH];
-    CC_MD5( cStr, (unsigned int)strlen(cStr), digest );
-    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
-    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
-        //注意：这边如果是x则输出32位小写加密字符串，如果是X则输出32位大写字符串
-        [output appendFormat:@"%02x", digest[i]];
-    return  output;
-}
 
 
 

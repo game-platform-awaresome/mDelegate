@@ -10,7 +10,6 @@
 
 @protocol M185AppDelegate <NSObject>
 
-@property (nonatomic, strong) NSString *interesing;
 
 // UIApplicationDelegate事件
 - (void)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
@@ -32,6 +31,9 @@
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error;
 - (void)application:(UIApplication*)application didReceiveLocalNotification:(UILocalNotification*)notification;
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo;
+
+
+
 
 
 

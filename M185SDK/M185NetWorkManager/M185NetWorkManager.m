@@ -8,6 +8,7 @@
 
 #import "M185NetWorkManager.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "M185SDKManager.h"
 
 NSURL * cheackUrl(id url);
 NSData * encodeParam(id param , NSStringEncoding encodeing);
@@ -17,7 +18,7 @@ int postRequest(id param, id url, NetWorkSuccessBlock success, NetWorkFailureBlo
     NSURL *safeUrl = cheackUrl(url);
     if (!safeUrl) {
         if (failure) {
-            failure(@{@"msg":@"error : url error"});
+            failure(nil,@{@"msg":@"error : url error"});
         }
         return 0;
     }
@@ -27,7 +28,7 @@ int postRequest(id param, id url, NetWorkSuccessBlock success, NetWorkFailureBlo
         [request setHTTPBody:cheackParam];
     } else {
         if (warning) {
-            warning(@{@"msg":@"warning : parameter is null or parameter type error"});
+            warning(nil,@{@"msg":@"warning : parameter is null or parameter type error"});
         }
     }
     request.timeoutInterval = 15.f;
@@ -40,32 +41,32 @@ int postRequest(id param, id url, NetWorkSuccessBlock success, NetWorkFailureBlo
             if (fail) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (failure) {
-                        failure(@{@"msg":fail.localizedDescription});
+                        failure(nil,@{@"msg":fail.localizedDescription});
                     }
                 });
             } else {
                 if (obj && [obj isKindOfClass:[NSDictionary class]]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         if (success) {
-                            success(obj);
+                            success(nil,obj);
                         }
                     });
                 } else if (obj) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         if (success) {
-                            success(@{@"data":obj});
+                            success(nil,@{@"data":obj});
                         }
                     });
                 } else {
                     if (failure) {
-                        failure(@{@"msg":@"error : call back data not exist."});
+                        failure(nil,@{@"msg":@"error : call back data not exist."});
                     }
                 }
             }
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (failure) {
-                    failure(@{@"msg":error.localizedDescription});
+                    failure(nil,@{@"msg":error.localizedDescription});
                 }
             });
         }
@@ -104,6 +105,9 @@ NSURL * cheackUrl(id url) {
 }
 
 NSData * encodeParam(id param , NSStringEncoding encoding) {
+    if ([param isKindOfClass:[NSData class]]) {
+        return param;
+    }
     NSData *result;
     if ([param isKindOfClass:[NSString class]]) {
 
@@ -160,6 +164,24 @@ NSString *md5String(NSString * input) {
     return  output;
 }
 
+NSString *sign(NSDictionary *params, NSArray *keys) {
+    NSMutableString *signString = [NSMutableString string];
+    [keys enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [signString appendString:obj];
+        [signString appendString:@"="];
+        if (params[obj] == nil) {
+            return ;
+        }
+        [signString appendString:params[obj]];
+//        if (idx < keys.count - 1) {
+//            [signString appendString:@"&"];
+//        }
+    }];
+    NSString *key = [M185SDKManager sharedManager].RH_appKey;
+    [signString appendString:key];
+    return md5String(signString);
+}
+
 
 
 @implementation FFNetWorkManager 
@@ -179,21 +201,8 @@ NSString *md5String(NSString * input) {
 
 /** 签名 */
 - (NSString *)signWithParms:(NSDictionary *)params WithKeys:(NSArray *)keys {
-    NSMutableString *signString = [NSMutableString string];
-    [keys enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [signString appendString:obj];
-        [signString appendString:@"="];
-        if (params[obj] == nil) {
-            return ;
-        }
-        [signString appendString:params[obj]];
-        if (idx < keys.count - 1) {
-            [signString appendString:@"&"];
-        }
-    }];
-    NSString *key = @"&#@KH^2892JY&@(220(@f";
-    [signString appendString:key];
-    return md5String(signString);
+
+    return nil;
 }
 
 

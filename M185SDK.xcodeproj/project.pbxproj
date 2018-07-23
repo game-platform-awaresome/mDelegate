@@ -7,6 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2FAC62F62105D0D300CF0C88 /* M185CustomServersManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FAC62F42105D0D300CF0C88 /* M185CustomServersManager.h */; };
+		2FAC62F72105D0D300CF0C88 /* M185CustomServersManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FAC62F52105D0D300CF0C88 /* M185CustomServersManager.m */; };
+		2FE91A762104CD1A009F8C01 /* M185UserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91A752104CD1A009F8C01 /* M185UserDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2FE91A7A2104D141009F8C01 /* M185PayConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91A782104D141009F8C01 /* M185PayConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2FE91A7B2104D141009F8C01 /* M185PayConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE91A792104D141009F8C01 /* M185PayConfig.m */; };
+		2FE91A802104D427009F8C01 /* M185PayDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91A7F2104D427009F8C01 /* M185PayDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2FE91A832104D5A7009F8C01 /* M185PayManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91A812104D5A7009F8C01 /* M185PayManager.h */; };
+		2FE91A842104D5A7009F8C01 /* M185PayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE91A822104D5A7009F8C01 /* M185PayManager.m */; };
+		2FE91A872104D684009F8C01 /* M185UserManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91A852104D684009F8C01 /* M185UserManager.h */; };
+		2FE91A882104D684009F8C01 /* M185UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE91A862104D684009F8C01 /* M185UserManager.m */; };
+		2FE91A8B2104D9D1009F8C01 /* M185StatisticsDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91A8A2104D9D1009F8C01 /* M185StatisticsDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2FE91A8E2104DA97009F8C01 /* M185SubmitData.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91A8C2104DA97009F8C01 /* M185SubmitData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2FE91A8F2104DA97009F8C01 /* M185SubmitData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE91A8D2104DA97009F8C01 /* M185SubmitData.m */; };
+		2FE91A932104DC49009F8C01 /* M185StatisticsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91A912104DC49009F8C01 /* M185StatisticsManager.h */; };
+		2FE91A942104DC49009F8C01 /* M185StatisticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE91A922104DC49009F8C01 /* M185StatisticsManager.m */; };
+		2FE91A982104DF10009F8C01 /* M185CallBackDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91A972104DF10009F8C01 /* M185CallBackDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2FE91A9B2104E16D009F8C01 /* M185DefaultSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91A992104E16D009F8C01 /* M185DefaultSDK.h */; };
+		2FE91A9C2104E16D009F8C01 /* M185DefaultSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE91A9A2104E16D009F8C01 /* M185DefaultSDK.m */; };
+		2FE91AA62104E9C2009F8C01 /* M185DefaultSDKHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91AA42104E9C2009F8C01 /* M185DefaultSDKHandler.h */; };
+		2FE91AA72104E9C2009F8C01 /* M185DefaultSDKHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE91AA52104E9C2009F8C01 /* M185DefaultSDKHandler.m */; };
+		2FF928C72105B17F004EC103 /* M185GMDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FF928C62105B17F004EC103 /* M185GMDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5B12A022100761100C1EED5 /* M185SDK.h in Headers */ = {isa = PBXBuildFile; fileRef = B5B12A002100761100C1EED5 /* M185SDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5B12A0B210076A600C1EED5 /* M185SDKManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B5B12A09210076A600C1EED5 /* M185SDKManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5B12A0C210076A600C1EED5 /* M185SDKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B12A0A210076A600C1EED5 /* M185SDKManager.m */; };
@@ -16,6 +37,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2FAC62F42105D0D300CF0C88 /* M185CustomServersManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185CustomServersManager.h; sourceTree = "<group>"; };
+		2FAC62F52105D0D300CF0C88 /* M185CustomServersManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185CustomServersManager.m; sourceTree = "<group>"; };
+		2FE91A752104CD1A009F8C01 /* M185UserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185UserDelegate.h; sourceTree = "<group>"; };
+		2FE91A782104D141009F8C01 /* M185PayConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185PayConfig.h; sourceTree = "<group>"; };
+		2FE91A792104D141009F8C01 /* M185PayConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185PayConfig.m; sourceTree = "<group>"; };
+		2FE91A7F2104D427009F8C01 /* M185PayDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185PayDelegate.h; sourceTree = "<group>"; };
+		2FE91A812104D5A7009F8C01 /* M185PayManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185PayManager.h; sourceTree = "<group>"; };
+		2FE91A822104D5A7009F8C01 /* M185PayManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185PayManager.m; sourceTree = "<group>"; };
+		2FE91A852104D684009F8C01 /* M185UserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185UserManager.h; sourceTree = "<group>"; };
+		2FE91A862104D684009F8C01 /* M185UserManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185UserManager.m; sourceTree = "<group>"; };
+		2FE91A8A2104D9D1009F8C01 /* M185StatisticsDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185StatisticsDelegate.h; sourceTree = "<group>"; };
+		2FE91A8C2104DA97009F8C01 /* M185SubmitData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185SubmitData.h; sourceTree = "<group>"; };
+		2FE91A8D2104DA97009F8C01 /* M185SubmitData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185SubmitData.m; sourceTree = "<group>"; };
+		2FE91A912104DC49009F8C01 /* M185StatisticsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185StatisticsManager.h; sourceTree = "<group>"; };
+		2FE91A922104DC49009F8C01 /* M185StatisticsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185StatisticsManager.m; sourceTree = "<group>"; };
+		2FE91A972104DF10009F8C01 /* M185CallBackDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185CallBackDelegate.h; sourceTree = "<group>"; };
+		2FE91A992104E16D009F8C01 /* M185DefaultSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185DefaultSDK.h; sourceTree = "<group>"; };
+		2FE91A9A2104E16D009F8C01 /* M185DefaultSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185DefaultSDK.m; sourceTree = "<group>"; };
+		2FE91AA42104E9C2009F8C01 /* M185DefaultSDKHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185DefaultSDKHandler.h; sourceTree = "<group>"; };
+		2FE91AA52104E9C2009F8C01 /* M185DefaultSDKHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185DefaultSDKHandler.m; sourceTree = "<group>"; };
+		2FF928C62105B17F004EC103 /* M185GMDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185GMDelegate.h; sourceTree = "<group>"; };
 		B5B129FD2100761100C1EED5 /* M185SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = M185SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B12A002100761100C1EED5 /* M185SDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185SDK.h; sourceTree = "<group>"; };
 		B5B12A012100761100C1EED5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,11 +79,78 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2FAC62F32105D08700CF0C88 /* M185ServersClass */ = {
+			isa = PBXGroup;
+			children = (
+				2FAC62F42105D0D300CF0C88 /* M185CustomServersManager.h */,
+				2FAC62F52105D0D300CF0C88 /* M185CustomServersManager.m */,
+			);
+			path = M185ServersClass;
+			sourceTree = "<group>";
+		};
+		2FE91A742104CCF6009F8C01 /* M185UserClass */ = {
+			isa = PBXGroup;
+			children = (
+				2FE91A752104CD1A009F8C01 /* M185UserDelegate.h */,
+				2FE91A852104D684009F8C01 /* M185UserManager.h */,
+				2FE91A862104D684009F8C01 /* M185UserManager.m */,
+			);
+			path = M185UserClass;
+			sourceTree = "<group>";
+		};
+		2FE91A772104D100009F8C01 /* M185PayClass */ = {
+			isa = PBXGroup;
+			children = (
+				2FE91A7F2104D427009F8C01 /* M185PayDelegate.h */,
+				2FE91A782104D141009F8C01 /* M185PayConfig.h */,
+				2FE91A792104D141009F8C01 /* M185PayConfig.m */,
+				2FE91A812104D5A7009F8C01 /* M185PayManager.h */,
+				2FE91A822104D5A7009F8C01 /* M185PayManager.m */,
+			);
+			path = M185PayClass;
+			sourceTree = "<group>";
+		};
+		2FE91A892104D93D009F8C01 /* M185StatisticsClass */ = {
+			isa = PBXGroup;
+			children = (
+				2FE91A8A2104D9D1009F8C01 /* M185StatisticsDelegate.h */,
+				2FE91A8C2104DA97009F8C01 /* M185SubmitData.h */,
+				2FE91A8D2104DA97009F8C01 /* M185SubmitData.m */,
+				2FE91A912104DC49009F8C01 /* M185StatisticsManager.h */,
+				2FE91A922104DC49009F8C01 /* M185StatisticsManager.m */,
+			);
+			path = M185StatisticsClass;
+			sourceTree = "<group>";
+		};
+		2FE91A962104DEED009F8C01 /* M185CallBack */ = {
+			isa = PBXGroup;
+			children = (
+				2FE91A972104DF10009F8C01 /* M185CallBackDelegate.h */,
+			);
+			path = M185CallBack;
+			sourceTree = "<group>";
+		};
+		2FE91A9E2104E652009F8C01 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2FF928C12105B14D004EC103 /* M185GMClass */ = {
+			isa = PBXGroup;
+			children = (
+				2FF928C62105B17F004EC103 /* M185GMDelegate.h */,
+			);
+			path = M185GMClass;
+			sourceTree = "<group>";
+		};
 		B5B129F32100761000C1EED5 = {
 			isa = PBXGroup;
 			children = (
 				B5B129FF2100761100C1EED5 /* M185SDK */,
 				B5B129FE2100761100C1EED5 /* Products */,
+				2FE91A9E2104E652009F8C01 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +167,12 @@
 			children = (
 				B5B12A002100761100C1EED5 /* M185SDK.h */,
 				B5B12A4E2101BFAB00C1EED5 /* M185NetWorkManager */,
+				2FAC62F32105D08700CF0C88 /* M185ServersClass */,
+				2FF928C12105B14D004EC103 /* M185GMClass */,
+				2FE91A962104DEED009F8C01 /* M185CallBack */,
+				2FE91A892104D93D009F8C01 /* M185StatisticsClass */,
+				2FE91A772104D100009F8C01 /* M185PayClass */,
+				2FE91A742104CCF6009F8C01 /* M185UserClass */,
 				B5B12A3A210078A300C1EED5 /* M185AppDelegate */,
 				B5B12A082100766D00C1EED5 /* M185SDKManager */,
 				B5B12A012100761100C1EED5 /* Info.plist */,
@@ -70,6 +185,10 @@
 			children = (
 				B5B12A09210076A600C1EED5 /* M185SDKManager.h */,
 				B5B12A0A210076A600C1EED5 /* M185SDKManager.m */,
+				2FE91A992104E16D009F8C01 /* M185DefaultSDK.h */,
+				2FE91A9A2104E16D009F8C01 /* M185DefaultSDK.m */,
+				2FE91AA42104E9C2009F8C01 /* M185DefaultSDKHandler.h */,
+				2FE91AA52104E9C2009F8C01 /* M185DefaultSDKHandler.m */,
 			);
 			path = M185SDKManager;
 			sourceTree = "<group>";
@@ -98,9 +217,22 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FE91AA62104E9C2009F8C01 /* M185DefaultSDKHandler.h in Headers */,
+				2FE91A9B2104E16D009F8C01 /* M185DefaultSDK.h in Headers */,
+				2FE91A872104D684009F8C01 /* M185UserManager.h in Headers */,
 				B5B12A022100761100C1EED5 /* M185SDK.h in Headers */,
+				2FE91A932104DC49009F8C01 /* M185StatisticsManager.h in Headers */,
 				B5B12A512101BFD800C1EED5 /* M185NetWorkManager.h in Headers */,
+				2FE91A762104CD1A009F8C01 /* M185UserDelegate.h in Headers */,
+				2FF928C72105B17F004EC103 /* M185GMDelegate.h in Headers */,
+				2FE91A8B2104D9D1009F8C01 /* M185StatisticsDelegate.h in Headers */,
+				2FE91A982104DF10009F8C01 /* M185CallBackDelegate.h in Headers */,
+				2FE91A8E2104DA97009F8C01 /* M185SubmitData.h in Headers */,
 				B5B12A3C210078D500C1EED5 /* M185AppDelegate.h in Headers */,
+				2FAC62F62105D0D300CF0C88 /* M185CustomServersManager.h in Headers */,
+				2FE91A7A2104D141009F8C01 /* M185PayConfig.h in Headers */,
+				2FE91A802104D427009F8C01 /* M185PayDelegate.h in Headers */,
+				2FE91A832104D5A7009F8C01 /* M185PayManager.h in Headers */,
 				B5B12A0B210076A600C1EED5 /* M185SDKManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,8 +304,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FE91AA72104E9C2009F8C01 /* M185DefaultSDKHandler.m in Sources */,
+				2FE91A8F2104DA97009F8C01 /* M185SubmitData.m in Sources */,
+				2FAC62F72105D0D300CF0C88 /* M185CustomServersManager.m in Sources */,
+				2FE91A942104DC49009F8C01 /* M185StatisticsManager.m in Sources */,
 				B5B12A522101BFD800C1EED5 /* M185NetWorkManager.m in Sources */,
+				2FE91A7B2104D141009F8C01 /* M185PayConfig.m in Sources */,
+				2FE91A882104D684009F8C01 /* M185UserManager.m in Sources */,
+				2FE91A9C2104E16D009F8C01 /* M185DefaultSDK.m in Sources */,
 				B5B12A0C210076A600C1EED5 /* M185SDKManager.m in Sources */,
+				2FE91A842104D5A7009F8C01 /* M185PayManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +445,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/M185SDK",
+				);
 				INFOPLIST_FILE = M185SDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -330,6 +474,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/M185SDK",
+				);
 				INFOPLIST_FILE = M185SDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
