@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		2FAC62F62105D0D300CF0C88 /* M185CustomServersManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FAC62F42105D0D300CF0C88 /* M185CustomServersManager.h */; };
 		2FAC62F72105D0D300CF0C88 /* M185CustomServersManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FAC62F52105D0D300CF0C88 /* M185CustomServersManager.m */; };
+		2FAC62FC2106CBF300CF0C88 /* M185MessageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FAC62FA2106CBF300CF0C88 /* M185MessageManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2FAC62FD2106CBF300CF0C88 /* M185MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FAC62FB2106CBF300CF0C88 /* M185MessageManager.m */; };
+		2FAC630421085B9800CF0C88 /* M185ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FAC630221085B9800CF0C88 /* M185ProgressHUD.m */; };
+		2FAC630521085B9800CF0C88 /* M185ProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FAC630321085B9800CF0C88 /* M185ProgressHUD.h */; };
+		2FAC630921085DC700CF0C88 /* M185ProgressManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FAC630721085DC700CF0C88 /* M185ProgressManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2FAC630A21085DC700CF0C88 /* M185ProgressManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FAC630821085DC700CF0C88 /* M185ProgressManager.m */; };
 		2FE91A762104CD1A009F8C01 /* M185UserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91A752104CD1A009F8C01 /* M185UserDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2FE91A7A2104D141009F8C01 /* M185PayConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91A782104D141009F8C01 /* M185PayConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2FE91A7B2104D141009F8C01 /* M185PayConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE91A792104D141009F8C01 /* M185PayConfig.m */; };
@@ -25,8 +31,6 @@
 		2FE91A982104DF10009F8C01 /* M185CallBackDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91A972104DF10009F8C01 /* M185CallBackDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2FE91A9B2104E16D009F8C01 /* M185DefaultSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91A992104E16D009F8C01 /* M185DefaultSDK.h */; };
 		2FE91A9C2104E16D009F8C01 /* M185DefaultSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE91A9A2104E16D009F8C01 /* M185DefaultSDK.m */; };
-		2FE91AA62104E9C2009F8C01 /* M185DefaultSDKHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91AA42104E9C2009F8C01 /* M185DefaultSDKHandler.h */; };
-		2FE91AA72104E9C2009F8C01 /* M185DefaultSDKHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE91AA52104E9C2009F8C01 /* M185DefaultSDKHandler.m */; };
 		2FF928C72105B17F004EC103 /* M185GMDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FF928C62105B17F004EC103 /* M185GMDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5B12A022100761100C1EED5 /* M185SDK.h in Headers */ = {isa = PBXBuildFile; fileRef = B5B12A002100761100C1EED5 /* M185SDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5B12A0B210076A600C1EED5 /* M185SDKManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B5B12A09210076A600C1EED5 /* M185SDKManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -39,6 +43,13 @@
 /* Begin PBXFileReference section */
 		2FAC62F42105D0D300CF0C88 /* M185CustomServersManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185CustomServersManager.h; sourceTree = "<group>"; };
 		2FAC62F52105D0D300CF0C88 /* M185CustomServersManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185CustomServersManager.m; sourceTree = "<group>"; };
+		2FAC62FA2106CBF300CF0C88 /* M185MessageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185MessageManager.h; sourceTree = "<group>"; };
+		2FAC62FB2106CBF300CF0C88 /* M185MessageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185MessageManager.m; sourceTree = "<group>"; };
+		2FAC630021084BCE00CF0C88 /* M185Pch.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185Pch.pch; sourceTree = "<group>"; };
+		2FAC630221085B9800CF0C88 /* M185ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M185ProgressHUD.m; sourceTree = "<group>"; };
+		2FAC630321085B9800CF0C88 /* M185ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M185ProgressHUD.h; sourceTree = "<group>"; };
+		2FAC630721085DC700CF0C88 /* M185ProgressManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185ProgressManager.h; sourceTree = "<group>"; };
+		2FAC630821085DC700CF0C88 /* M185ProgressManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185ProgressManager.m; sourceTree = "<group>"; };
 		2FE91A752104CD1A009F8C01 /* M185UserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185UserDelegate.h; sourceTree = "<group>"; };
 		2FE91A782104D141009F8C01 /* M185PayConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185PayConfig.h; sourceTree = "<group>"; };
 		2FE91A792104D141009F8C01 /* M185PayConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185PayConfig.m; sourceTree = "<group>"; };
@@ -55,8 +66,6 @@
 		2FE91A972104DF10009F8C01 /* M185CallBackDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185CallBackDelegate.h; sourceTree = "<group>"; };
 		2FE91A992104E16D009F8C01 /* M185DefaultSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185DefaultSDK.h; sourceTree = "<group>"; };
 		2FE91A9A2104E16D009F8C01 /* M185DefaultSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185DefaultSDK.m; sourceTree = "<group>"; };
-		2FE91AA42104E9C2009F8C01 /* M185DefaultSDKHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185DefaultSDKHandler.h; sourceTree = "<group>"; };
-		2FE91AA52104E9C2009F8C01 /* M185DefaultSDKHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185DefaultSDKHandler.m; sourceTree = "<group>"; };
 		2FF928C62105B17F004EC103 /* M185GMDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185GMDelegate.h; sourceTree = "<group>"; };
 		B5B129FD2100761100C1EED5 /* M185SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = M185SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B12A002100761100C1EED5 /* M185SDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185SDK.h; sourceTree = "<group>"; };
@@ -86,6 +95,26 @@
 				2FAC62F52105D0D300CF0C88 /* M185CustomServersManager.m */,
 			);
 			path = M185ServersClass;
+			sourceTree = "<group>";
+		};
+		2FAC62F92106CBDB00CF0C88 /* M185MessageManager */ = {
+			isa = PBXGroup;
+			children = (
+				2FAC62FA2106CBF300CF0C88 /* M185MessageManager.h */,
+				2FAC62FB2106CBF300CF0C88 /* M185MessageManager.m */,
+			);
+			path = M185MessageManager;
+			sourceTree = "<group>";
+		};
+		2FAC630121085B8600CF0C88 /* M185ProgressClass */ = {
+			isa = PBXGroup;
+			children = (
+				2FAC630721085DC700CF0C88 /* M185ProgressManager.h */,
+				2FAC630821085DC700CF0C88 /* M185ProgressManager.m */,
+				2FAC630321085B9800CF0C88 /* M185ProgressHUD.h */,
+				2FAC630221085B9800CF0C88 /* M185ProgressHUD.m */,
+			);
+			path = M185ProgressClass;
 			sourceTree = "<group>";
 		};
 		2FE91A742104CCF6009F8C01 /* M185UserClass */ = {
@@ -166,6 +195,9 @@
 			isa = PBXGroup;
 			children = (
 				B5B12A002100761100C1EED5 /* M185SDK.h */,
+				2FAC630021084BCE00CF0C88 /* M185Pch.pch */,
+				2FAC630121085B8600CF0C88 /* M185ProgressClass */,
+				2FAC62F92106CBDB00CF0C88 /* M185MessageManager */,
 				B5B12A4E2101BFAB00C1EED5 /* M185NetWorkManager */,
 				2FAC62F32105D08700CF0C88 /* M185ServersClass */,
 				2FF928C12105B14D004EC103 /* M185GMClass */,
@@ -187,8 +219,6 @@
 				B5B12A0A210076A600C1EED5 /* M185SDKManager.m */,
 				2FE91A992104E16D009F8C01 /* M185DefaultSDK.h */,
 				2FE91A9A2104E16D009F8C01 /* M185DefaultSDK.m */,
-				2FE91AA42104E9C2009F8C01 /* M185DefaultSDKHandler.h */,
-				2FE91AA52104E9C2009F8C01 /* M185DefaultSDKHandler.m */,
 			);
 			path = M185SDKManager;
 			sourceTree = "<group>";
@@ -217,16 +247,18 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FE91AA62104E9C2009F8C01 /* M185DefaultSDKHandler.h in Headers */,
 				2FE91A9B2104E16D009F8C01 /* M185DefaultSDK.h in Headers */,
 				2FE91A872104D684009F8C01 /* M185UserManager.h in Headers */,
 				B5B12A022100761100C1EED5 /* M185SDK.h in Headers */,
 				2FE91A932104DC49009F8C01 /* M185StatisticsManager.h in Headers */,
+				2FAC630521085B9800CF0C88 /* M185ProgressHUD.h in Headers */,
 				B5B12A512101BFD800C1EED5 /* M185NetWorkManager.h in Headers */,
 				2FE91A762104CD1A009F8C01 /* M185UserDelegate.h in Headers */,
 				2FF928C72105B17F004EC103 /* M185GMDelegate.h in Headers */,
 				2FE91A8B2104D9D1009F8C01 /* M185StatisticsDelegate.h in Headers */,
+				2FAC630921085DC700CF0C88 /* M185ProgressManager.h in Headers */,
 				2FE91A982104DF10009F8C01 /* M185CallBackDelegate.h in Headers */,
+				2FAC62FC2106CBF300CF0C88 /* M185MessageManager.h in Headers */,
 				2FE91A8E2104DA97009F8C01 /* M185SubmitData.h in Headers */,
 				B5B12A3C210078D500C1EED5 /* M185AppDelegate.h in Headers */,
 				2FAC62F62105D0D300CF0C88 /* M185CustomServersManager.h in Headers */,
@@ -304,12 +336,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FE91AA72104E9C2009F8C01 /* M185DefaultSDKHandler.m in Sources */,
 				2FE91A8F2104DA97009F8C01 /* M185SubmitData.m in Sources */,
 				2FAC62F72105D0D300CF0C88 /* M185CustomServersManager.m in Sources */,
 				2FE91A942104DC49009F8C01 /* M185StatisticsManager.m in Sources */,
 				B5B12A522101BFD800C1EED5 /* M185NetWorkManager.m in Sources */,
+				2FAC630421085B9800CF0C88 /* M185ProgressHUD.m in Sources */,
+				2FAC62FD2106CBF300CF0C88 /* M185MessageManager.m in Sources */,
 				2FE91A7B2104D141009F8C01 /* M185PayConfig.m in Sources */,
+				2FAC630A21085DC700CF0C88 /* M185ProgressManager.m in Sources */,
 				2FE91A882104D684009F8C01 /* M185UserManager.m in Sources */,
 				2FE91A9C2104E16D009F8C01 /* M185DefaultSDK.m in Sources */,
 				B5B12A0C210076A600C1EED5 /* M185SDKManager.m in Sources */,
@@ -449,6 +483,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/M185SDK",
 				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/M185SDK/M185Pch.pch";
 				INFOPLIST_FILE = M185SDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -478,6 +513,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/M185SDK",
 				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/M185SDK/M185Pch.pch";
 				INFOPLIST_FILE = M185SDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

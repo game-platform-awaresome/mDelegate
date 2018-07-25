@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "M185PayConfig.h"
 
+
 @protocol M185PayDelegate <NSObject>
 
 + (void)payStartWithConfig:(M185PayConfig *)config;

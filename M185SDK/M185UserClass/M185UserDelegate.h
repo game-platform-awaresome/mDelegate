@@ -19,7 +19,7 @@
 
 + (void)loginWithCustom:(id)customData;
 
-
++ (void)switchAccount;
 
 
 @end

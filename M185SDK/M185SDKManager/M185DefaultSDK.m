@@ -34,6 +34,15 @@ static M185DefaultSDK *_defaultSDK = nil;
 
 #pragma mark - cuntom method
 - (void)initChildSDK {
+    if (M185SDK.appID == nil) {
+        M185Message(@"appID 错误");
+        return;
+    }
+    if (M185SDK.clientKey == nil) {
+        M185Message(@"clientKey 错误");
+        return;
+    }
+    
     Class SY185SDK = NSClassFromString(@"SY185SDK");
     if (SY185SDK) {
         SEL selector = NSSelectorFromString(@"initWithAppID:Appkey:Delegate:UseWindow:");
@@ -43,10 +52,7 @@ static M185DefaultSDK *_defaultSDK = nil;
             func(SY185SDK, selector,M185SDK.appID,M185SDK.clientKey,self,YES);
         }
     } else {
-        NSLog(@"m185SDK default SDK not found, reload after 2 seconds");
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self initChildSDK];
-        });
+        M185Message(@"未找到子SDK");
     }
 }
 
@@ -117,9 +123,9 @@ static M185DefaultSDK *_defaultSDK = nil;
 
 #pragma mark - delegate
 - (void)m185SDKInitCallBackWithSuccess:(BOOL)success withInformation:(NSDictionary *)dict {
-    if ([M185SDK.delegate respondsToSelector:@selector(M185SDKInitCallBackWithSuccess:Information:)]) {
-        [M185SDK.delegate M185SDKInitCallBackWithSuccess:success Information:dict];
-    }
+//    if ([M185SDK.delegate respondsToSelector:@selector(M185SDKInitCallBackWithSuccess:Information:)]) {
+//        [M185SDK.delegate M185SDKInitCallBackWithSuccess:success Information:dict];
+//    }
 }
 
 - (void)m185SDKLoginCallBackWithSuccess:(BOOL)success withInformation:(NSDictionary *)dict {
@@ -129,14 +135,12 @@ static M185DefaultSDK *_defaultSDK = nil;
         NSString *extension = [NSString stringWithFormat:@"{\"username\":\"%@\",\"token\":\"%@\"}",username,token];
         [M185CustomServersManager getUserDataWithExtension:extension];
     } else {
-        NSLog(@"登录失败");
         M185SDK.isLogin = NO;
     }
 }
 
 - (void)m185SDKLogOutCallBackWithSuccess:(BOOL)success withInformation:(NSDictionary *)dict {
     if (success) {
-        NSLog(@"登出成功");
         if ([M185SDK.delegate respondsToSelector:@selector(M185SDKLogOutCallBackWithSuccess:Information:)]) {
             [M185SDK.delegate M185SDKLogOutCallBackWithSuccess:YES Information:@{@"msg":@"退出登录"}];
         }
@@ -144,8 +148,14 @@ static M185DefaultSDK *_defaultSDK = nil;
 }
 
 - (void)m185SDKRechargeCallBackWithSuccess:(BOOL)success withInformation:(NSDictionary *)dict {
-    if ([M185SDK.delegate respondsToSelector:@selector(M185SDKRechargeCallBackWithSuccess:Information:)]) {
-        [M185SDK.delegate  M185SDKRechargeCallBackWithSuccess:success Information:dict];
+    M185PayResultCode code = CODE_PAY_UNKNOWN;
+    if (success) {
+        code = CODE_PAY_SUCCESS;
+    } else {
+        code = CODE_PAY_FAIL;
+    }
+    if ([M185SDK.delegate respondsToSelector:@selector(M185SDKPayResultWithStatus:Information:)]) {
+        [M185SDK.delegate  M185SDKPayResultWithStatus:code Information:dict];
     }
 }
 

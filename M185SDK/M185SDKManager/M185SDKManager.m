@@ -14,6 +14,7 @@
 #import "M185UserManager.h"
 #import "M185StatisticsManager.h"
 #import "M185CustomServersManager.h"
+#import "M185MessageManager.h"
 
 
 @interface M185SDKManager ()
@@ -44,35 +45,39 @@ static M185SDKManager *_manager = nil;
     
 }
 
+- (void)setCallBackDelegate:(id<M185CallBackDelegate>)delegate {
+    self.delegate = delegate;
+}
+
 - (void)initWithRH_AppID:(NSString *)RH_appID
            WithRH_AppKey:(NSString *)RH_appKey
        WithRH_ChannelIDL:(NSString *)RH_channelID
                WithAppID:(NSString *)appID
            WithClientKey:(NSString *)clientKey
     WithCallBackDelegate:(id<M185CallBackDelegate>)callBackDelegate {
-    
+
     if (RH_appID == nil) {
-        NSLog(@"%s -> param error",__func__);
+        M185Message(@"RH_appID 有误.");
         return;
     }
     if (RH_appKey == nil) {
-        NSLog(@"%s -> param error",__func__);
+        M185Message(@"RH_appKey 有误.");
         return;
     }
     if (RH_channelID == nil) {
-        NSLog(@"%s -> param error",__func__);
+        M185Message(@"RH_channelID 有误.");
         return;
     }
     if (appID == nil) {
-        NSLog(@"%s -> param error",__func__);
+        M185Message(@"appID 有误.");
         return;
     }
     if (clientKey == nil) {
-        NSLog(@"%s -> param error",__func__);
+        M185Message(@"clientKey 有误.");
         return;
     }
     if (callBackDelegate == nil) {
-        NSLog(@"%s -> call back delelgate not found",__func__);
+        M185Message(@"接收回调信息的代理不能为空");
         return;
     }
     self.RH_appID = RH_appID;
@@ -85,9 +90,45 @@ static M185SDKManager *_manager = nil;
     [M185CustomServersManager upLoadDeviceInfo];
 }
 
+- (void)getInfoWithPlist {
+     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"M185Config" ofType:@"plist"]];
+    if (dict) {
+        self.RH_appID = dict[@"RH_AppID"] ? [NSString stringWithFormat:@"%@",dict[@"RH_AppID"]] : nil;
+        self.RH_appKey = dict[@"RH_AppKey"] ? [NSString stringWithFormat:@"%@",dict[@"RH_AppKey"]] : nil;
+        self.RH_channelID = dict[@"RH_ChannelID"] ? [NSString stringWithFormat:@"%@",dict[@"RH_ChannelID"]] : nil;
+        self.appID = dict[@"AppID"] ? [NSString stringWithFormat:@"%@",dict[@"AppID"]] : nil;
+        self.clientKey = dict[@"ClientKey"] ? [NSString stringWithFormat:@"%@",dict[@"ClientKey"]] : nil;
+        if (self.RH_appID == nil) {
+            M185Message(@"RH_appID 有误.");
+            return;
+        }
+        if (self.RH_appKey == nil) {
+            M185Message(@"RH_appKey 有误.");
+            return;
+        }
+        if (self.RH_channelID == nil) {
+            M185Message(@"RH_channelID 有误.");
+            return;
+        }
+        if (self.appID == nil) {
+            M185Message(@"appID 有误.");
+            return;
+        }
+        if (self.clientKey == nil) {
+            M185Message(@"clientKey 有误.");
+            return;
+        }
+        //上报设备
+        [M185CustomServersManager upLoadDeviceInfo];
+    } else {
+        M185Message(@"未找到配置文件");
+    }
+}
+
 #pragma mark - app delegate
 // UIapplication 事件
 - (void)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self getInfoWithPlist];
     [[M185DefaultSDK sharedSDK] application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
@@ -154,6 +195,10 @@ static M185SDKManager *_manager = nil;
     [M185UserManager logOut];
 }
 
++ (void)switchAccount {
+    [M185UserManager switchAccount];
+}
+
 + (void)showUserCenter {
     [M185UserManager showUserCenter];
 }
@@ -179,16 +224,6 @@ static M185SDKManager *_manager = nil;
 
 + (void)submitDataWithCustom:(id)customData {
     [M185StatisticsManager submitDataWithCustom:customData];
-}
-
-
-#pragma mark - gm delegate
-+ (void)initGMWithDictionary:(NSDictionary *)dict {
-    
-}
-
-+ (void)initGMWithServerid:(NSString *)serverID ServerName:(NSString *)serverName RoleID:(NSString *)roleID RoleName:(NSString *)roleName {
-    
 }
 
 

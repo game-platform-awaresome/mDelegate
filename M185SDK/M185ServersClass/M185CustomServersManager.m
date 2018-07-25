@@ -47,6 +47,9 @@ NSString *CU7X000(NSString * input) {
     return  output;
 }
 
+
+static BOOL m185_PayStart = NO;
+
 @implementation M185CustomServersManager
 
 
@@ -69,18 +72,21 @@ NSString *CU7X000(NSString * input) {
         if (content) {
             NSString *state = content[@"state"];
             if (state.integerValue == 1) {
-                NSLog(@"M185SDK -> 初始化成功");
+                syLog(@"M185SDK -> 初始化成功");
+                if ([M185SDK.delegate respondsToSelector:@selector(M185SDKInitCallBackWithSuccess:Information:)]) {
+                    [M185SDK.delegate M185SDKInitCallBackWithSuccess:YES Information:@{@"msg":@"初始化成功"}];
+                }
             } else {
-                NSLog(@"M185SDK -> %@",content);
+                syLog(@"M185SDK -> %@",content);
             }
         }
     }, ^(id failure, NSDictionary *content) {
         if (content) {
-            NSLog(@"M185SDK == %@",content);
+            syLog(@"M185SDK == %@",content);
         }
     }, ^(id warning, NSDictionary *content) {
         if (content) {
-            NSLog(@"M185SDK == %@",content);
+            syLog(@"M185SDK == %@",content);
         }
     });
 }
@@ -89,7 +95,7 @@ NSString *CU7X000(NSString * input) {
 + (void)getUserDataWithExtension:(NSString *)extension {
 
     if (!extension) {
-        NSLog(@"获取用户 token 数据不能为空");
+        syLog(@"获取用户 token 数据不能为空");
         return;
     }
     
@@ -111,34 +117,35 @@ NSString *CU7X000(NSString * input) {
         if (content) {
             NSString *state = content[@"state"];
             [M185SDKManager sharedManager].isLogin = NO;
+            M185LoginResultCode code = CODE_LOGIN_FAIL;
             if (state.integerValue == 1) {
-                NSLog(@"M185SDK -> 登录成功");
                 [M185UserManager setCurrentUserDataWith:content[@"data"]];
-                if ([M185SDK.delegate respondsToSelector:@selector(M185SDKLoginCallBackWithSuccess:Information:)]) {
+                code = CODE_LOGIN_SUCCESS;
+                if ([M185SDK.delegate respondsToSelector:@selector(M185SDKLoginResultWithCode:Information:)]) {
                     NSString *username1 = [NSString stringWithFormat:@"%@",content[@"data"][@"userID"]];
                     NSString *token1 = [NSString stringWithFormat:@"%@",content[@"data"][@"token"]];
-                    NSString *extension1 = [NSString stringWithFormat:@"%@",content[@"data"][@"extension"]];
-                    [M185SDK.delegate M185SDKLoginCallBackWithSuccess:YES Information:@{@"username":username1,
+                    NSString *extension1 = @"";
+                    [M185SDK.delegate M185SDKLoginResultWithCode:code Information:@{@"username":username1,
                                                                                         @"token":token1,
                                                                                         @"extension":extension1}];
                 }
             } else {
-                if ([M185SDK.delegate respondsToSelector:@selector(M185SDKLoginCallBackWithSuccess:Information:)]) {
+                if ([M185SDK.delegate respondsToSelector:@selector(M185SDKLoginResultWithCode:Information:)]) {
+                    [M185SDK.delegate M185SDKLoginResultWithCode:code Information:@{@"msg":@"登录失败"}];
                     [M185SDKManager logOut];
-                    [M185SDK.delegate M185SDKLoginCallBackWithSuccess:NO Information:@{@"msg":@"登录失败"}];
                 }
             }
         }
     }, ^(id failure, NSDictionary *content) {
         if (content) {
-            if ([M185SDK.delegate respondsToSelector:@selector(M185SDKLoginCallBackWithSuccess:Information:)]) {
+            if ([M185SDK.delegate respondsToSelector:@selector(M185SDKLoginResultWithCode:Information:)]) {
                 [M185SDKManager logOut];
-                [M185SDK.delegate M185SDKLoginCallBackWithSuccess:NO Information:@{@"msg":@"连接服务器失败"}];
+                [M185SDK.delegate M185SDKLoginResultWithCode:CODE_LOGIN_FAIL Information:@{@"msg":@"连接服务器失败"}];
             }
         }
     }, ^(id warning, NSDictionary *content) {
         if (content) {
-            NSLog(@"warning == %@",content);
+            syLog(@"warning == %@",content);
         }
     });
 }
@@ -182,7 +189,7 @@ NSString *CU7X000(NSString * input) {
         [dict setObject:[M185UserManager currentUser].userID forKey:@"userID"];
         
     } else {
-        NSLog(@"submit data type error.");
+        syLog(@"submit data type error.");
         return;
     }
     
@@ -190,18 +197,18 @@ NSString *CU7X000(NSString * input) {
         if (content) {
             NSString *state = content[@"state"];
             if (state.integerValue == 1) {
-                NSLog(@"上报数据成功  == %@",content);
+                syLog(@"上报数据成功  == %@",content);
             } else {
-                NSLog(@"上报数据失败  == %@",content);
+                syLog(@"上报数据失败  == %@",content);
             }
         }
     }, ^(id failure, NSDictionary *content) {
         if (content) {
-            NSLog(@"warning == %@",content);
+            syLog(@"warning == %@",content);
         }
     }, ^(id warning, NSDictionary *content) {
         if (content) {
-            NSLog(@"warning == %@",content);
+            syLog(@"warning == %@",content);
         }
     });
 }
@@ -209,6 +216,10 @@ NSString *CU7X000(NSString * input) {
 + (void)pay:(id)data {
     if ([M185UserManager currentUser].userID == nil || [M185UserManager currentUser].userID.length < 1) {
         
+        return;
+    }
+    
+    if (m185_PayStart) {
         return;
     }
     
@@ -228,7 +239,7 @@ NSString *CU7X000(NSString * input) {
         config.serverName = [NSString stringWithFormat:@"%@",data[@"serverName"]];
         config.extension = [NSString stringWithFormat:@"%@",data[@"extension"]];
     } else {
-        NSLog(@"pay config type error.");
+        M185Message(@"支付信息错误");
         return;
     }
     
@@ -272,28 +283,33 @@ NSString *CU7X000(NSString * input) {
     
     [dict setObject:CU7X000(outString) forKey:@"sign"];
 
-    
+    Start_network;
+    m185_PayStart = YES;
     postRequest(dict, [NSString stringWithFormat:@"%@/pay/getOrderID",M185SDK.urlString], ^(id success, NSDictionary *content) {
+        Stop_network;
+        m185_PayStart = NO;
         if (content) {
             NSString *state = content[@"state"];
             if (state.integerValue == 1) {
-                NSLog(@"支付  == %@",content);
                 NSString *orderID = content[@"data"][@"orderID"] ? [NSString stringWithFormat:@"%@",content[@"data"][@"orderID"]] : @"";
                 NSString *m185_extension = content[@"data"][@"extension"] ? [NSString stringWithFormat:@"%@",content[@"data"][@"extension"]] : @"";
                 config.orderID = orderID;
                 config.M185SDK_extension = m185_extension;
                 [M185PayManager payStartWithConfig:config];
             } else {
-                NSLog(@"支付失败  == %@",content);
+                syLog(@"支付失败  == %@",content);
             }
         }
     }, ^(id failure, NSDictionary *content) {
+        Stop_network;
+        m185_PayStart = NO;
+        M185Message(@"系统维护中");
         if (content) {
-            NSLog(@"支付失败 == %@",content);
+            syLog(@"支付失败 == %@",content);
         }
     }, ^(id warning, NSDictionary *content) {
         if (content) {
-            NSLog(@"warning == %@",content);
+            syLog(@"warning == %@",content);
         }
     });
 }
@@ -357,13 +373,7 @@ NSString *CU7X000(NSString * input) {
                 [device model]];
     }
     NSData* data = [json dataUsingEncoding:NSUTF8StringEncoding];
-    NSString* base64 = nil;
-    if ([data respondsToSelector:@selector(base64EncodedStringWithOptions:)]) {
-        base64 = [data base64EncodedStringWithOptions:kNilOptions];
-    }
-    else {
-        base64 = [data base64Encoding];
-    }
+    NSString* base64 = [data base64EncodedStringWithOptions:kNilOptions];
     return [NSString stringWithFormat:@"ios-%@", base64];
 }
 

@@ -13,7 +13,7 @@
 
 + (M185DefaultSDK *)sharedSDK;
 
-
 + (void)pay:(id)config;
+
 
 @end

@@ -15,7 +15,9 @@
 + (void)submitDataWith:(M185SubmitData *)data {
     
     [M185CustomServersManager submitGameData:data];
-    
+}
+
++ (void)submitChildSDKData:(M185SubmitData *)data {
     Class SY185SDK = NSClassFromString(@"SY185SDK");
     if (SY185SDK) {
         SEL selector = NSSelectorFromString(@"submitExtraDataWithType:ServerID:ServerName:RoleID:RoleName:RoleLevel:Money:VipLevel:");
@@ -34,7 +36,7 @@
                  data.vipLevel);
         }
     } else {
-        
+        M185Message(@"未找到子SDK");
     }
 }
 

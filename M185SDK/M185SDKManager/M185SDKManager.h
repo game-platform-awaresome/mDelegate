@@ -12,7 +12,6 @@
 #import "M185UserDelegate.h"
 #import "M185PayDelegate.h"
 #import "M185StatisticsDelegate.h"
-#import "M185GMDelegate.h"
 
 
 #define M185SDK [M185SDKManager sharedManager]
@@ -23,14 +22,20 @@ typedef void(^M185SDKInitCallBackBlock)(NSDictionary *content, BOOL success);
 <M185AppDelegate,
 M185UserDelegate,
 M185PayDelegate,
-M185StatisticsDelegate,
-M185GMDelegate>
+M185StatisticsDelegate>
 
+//游戏研发参数
 @property (strong, nonatomic)           NSString *RH_appID;
 @property (strong, nonatomic)           NSString *RH_appKey;
+
+//出包的时候改参数
 @property (strong, nonatomic)           NSString *RH_channelID;
+
+//子渠道 SDK 参数 , 也需要修改
 @property (strong, nonatomic)           NSString *appID;
 @property (strong, nonatomic)           NSString *clientKey;
+
+
 
 @property (strong, nonatomic, readonly) NSString *channelID;
 @property (strong, nonatomic, readonly) NSString *channelName;
@@ -46,17 +51,7 @@ M185GMDelegate>
 + (M185SDKManager *)sharedManager;
 
 
-- (void)initSDKWith:(id)info;
-
-
-- (void)initWithRH_AppID:(NSString *)RH_appID
-           WithRH_AppKey:(NSString *)RH_appKey
-       WithRH_ChannelIDL:(NSString *)RH_channelID
-               WithAppID:(NSString *)appID
-           WithClientKey:(NSString *)clientKey
-    WithCallBackDelegate:(id<M185CallBackDelegate>)callBackDelegate;
-
-
+- (void)setCallBackDelegate:(id<M185CallBackDelegate>)delegate;
 
 
 @end

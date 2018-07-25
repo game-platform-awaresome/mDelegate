@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface M185PayConfig : NSObject
 
 @property (strong, nonatomic) NSString *productID;              //商品ID

@@ -35,7 +35,7 @@ static M185UserManager *_currentuser = nil;
             func();
         }
     } else {
-        NSLog(@"login not exist");
+        M185Message(@"未找到子SDK");
     }
 }
 
@@ -50,7 +50,7 @@ static M185UserManager *_currentuser = nil;
         }
         [[M185UserManager currentUser] removeAllProperty];
     } else {
-        
+        M185Message(@"未找到子SDK");
     }
     
 }
@@ -60,6 +60,10 @@ static M185UserManager *_currentuser = nil;
 }
 
 + (void)loginWithCustom:(id)customData {
+    
+}
+
++ (void)switchAccount {
     
 }
 

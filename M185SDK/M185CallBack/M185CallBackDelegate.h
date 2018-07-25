@@ -8,6 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+/** 支付结果 */
+typedef NS_ENUM(NSUInteger, M185PayResultCode) {
+    CODE_PAY_SUCCESS = 1,       //支付成功
+    CODE_PAY_FAIL,              //支付失败
+    CODE_PAY_CANCEL,            //支付取消
+    CODE_PAY_UNKNOWN            //未知错误
+};
+
+/** 登录结果 */
+typedef NS_ENUM(NSUInteger, M185LoginResultCode) {
+    CODE_LOGIN_SUCCESS,
+    CODE_LOGIN_FAIL
+};
+
 @protocol M185CallBackDelegate <NSObject>
 
 /**
@@ -22,8 +36,8 @@
  *  成功: success 返回 true,dict 里返回 username 和 userToken
  *  失败: success 返回 false,dict 里返回 error message
  */
-- (void)M185SDKLoginCallBackWithSuccess:(BOOL)success
-                            Information:(NSDictionary *_Nonnull)dict;
+- (void)M185SDKLoginResultWithCode:(M185LoginResultCode)code
+                       Information:(NSDictionary *_Nonnull)dict;
 
 /**
  *  登出的回调:
@@ -33,15 +47,19 @@
                              Information:(NSDictionary *_Nullable)dict;
 
 /**
- *  充值回调
+ *  切换账号回调:
+ *  从 SDK 中点击了切换账号的回调
  */
-- (void)M185SDKRechargeCallBackWithSuccess:(BOOL)success
-                               Information:(NSDictionary *_Nonnull)dict;
+- (void)M185SDKSwitchAccountCallBackWith:(BOOL)success
+                             Information:(NSDictionary *_Nullable)dict;
 
 /**
- * 自定义回调事件
+ *  充值回调
  */
-- (void)M185SDKCustomCallBackWithInformation:(id _Nullable)info;
+- (void)M185SDKPayResultWithStatus:(M185PayResultCode)code
+                       Information:(NSDictionary *_Nonnull)dict;
+
+
 
 
 
