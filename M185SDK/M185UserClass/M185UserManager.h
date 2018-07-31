@@ -19,6 +19,8 @@
 @property (strong, nonatomic) NSString      *sdkUserName;
 @property (strong, nonatomic) NSDictionary  *timestamp;
 
+@property (strong, nonatomic) NSString      *switchAccount;
+
 
 + (M185UserManager *)currentUser;
 

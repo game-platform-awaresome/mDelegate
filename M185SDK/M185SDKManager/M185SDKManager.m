@@ -207,6 +207,10 @@ static M185SDKManager *_manager = nil;
     [M185UserManager loginWithCustom:customData];
 }
 
++ (void)GameExit {
+    [M185UserManager GameExit];
+}
+
 #pragma pay delegate
 + (void)payStartWithConfig:(M185PayConfig *)config {
     [M185CustomServersManager pay:config];

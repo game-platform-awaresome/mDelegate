@@ -11,6 +11,7 @@
 #import "M185SDKManager.h"
 #import "M185CustomServersManager.h"
 #import "M185PayConfig.h"
+#import "M185UserManager.h"
 
 
 @interface M185DefaultSDK ()
@@ -159,7 +160,13 @@ static M185DefaultSDK *_defaultSDK = nil;
     }
 }
 
-
+- (void)m185SDKSwitchAccountCallBackWithSuccess:(BOOL)success withInformation:(NSDictionary *_Nonnull)dict {
+    [M185UserManager currentUser].switchAccount = @"1";
+    NSString *token  = dict[@"token"];
+    NSString *username = dict[@"username"];
+    NSString *extension = [NSString stringWithFormat:@"{\"username\":\"%@\",\"token\":\"%@\"}",username,token];
+    [M185CustomServersManager getUserDataWithExtension:extension];
+}
 
 
 

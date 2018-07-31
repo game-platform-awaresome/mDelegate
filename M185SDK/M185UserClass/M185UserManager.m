@@ -67,6 +67,10 @@ static M185UserManager *_currentuser = nil;
     
 }
 
++ (void)GameExit {
+    
+}
+
 - (void)removeAllProperty {
 //    // 获取当前类的所有属性
 //    unsigned int count;// 记录属性个数

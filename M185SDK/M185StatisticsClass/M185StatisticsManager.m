@@ -15,6 +15,8 @@
 + (void)submitDataWith:(M185SubmitData *)data {
     
     [M185CustomServersManager submitGameData:data];
+    
+    [M185StatisticsManager submitChildSDKData:data];
 }
 
 + (void)submitChildSDKData:(M185SubmitData *)data {

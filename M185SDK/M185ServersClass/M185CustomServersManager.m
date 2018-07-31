@@ -78,12 +78,15 @@ static BOOL m185_PayStart = NO;
                 }
             } else {
                 syLog(@"M185SDK -> %@",content);
+//                if ([M185SDK.delegate respondsToSelector:@selector(M185SDKInitCallBackWithSuccess:Information:)]) {
+//                    [M185SDK.delegate M185SDKInitCallBackWithSuccess:NO Information:@{@"msg":@"初始化失败"}];
+//                }
             }
         }
     }, ^(id failure, NSDictionary *content) {
-        if (content) {
-            syLog(@"M185SDK == %@",content);
-        }
+//        if ([M185SDK.delegate respondsToSelector:@selector(M185SDKInitCallBackWithSuccess:Information:)]) {
+//            [M185SDK.delegate M185SDKInitCallBackWithSuccess:NO Information:@{@"msg":@"服务器维护中"}];
+//        }
     }, ^(id warning, NSDictionary *content) {
         if (content) {
             syLog(@"M185SDK == %@",content);
@@ -120,18 +123,37 @@ static BOOL m185_PayStart = NO;
             M185LoginResultCode code = CODE_LOGIN_FAIL;
             if (state.integerValue == 1) {
                 [M185UserManager setCurrentUserDataWith:content[@"data"]];
+                
                 code = CODE_LOGIN_SUCCESS;
-                if ([M185SDK.delegate respondsToSelector:@selector(M185SDKLoginResultWithCode:Information:)]) {
-                    NSString *username1 = [NSString stringWithFormat:@"%@",content[@"data"][@"userID"]];
-                    NSString *token1 = [NSString stringWithFormat:@"%@",content[@"data"][@"token"]];
-                    NSString *extension1 = @"";
-                    [M185SDK.delegate M185SDKLoginResultWithCode:code Information:@{@"username":username1,
-                                                                                        @"token":token1,
-                                                                                        @"extension":extension1}];
+                
+                if ([M185UserManager currentUser].switchAccount.boolValue) {
+                    if ([M185SDK.delegate respondsToSelector:@selector(M185SDKSwitchAccountCallBackWith:Information:)]) {
+                        NSString *username1 = [NSString stringWithFormat:@"%@",content[@"data"][@"userID"]];
+                        NSString *token1 = [NSString stringWithFormat:@"%@",content[@"data"][@"token"]];
+                        NSString *extension1 = @"";
+                        [M185SDK.delegate M185SDKSwitchAccountCallBackWith:code
+                                                               Information:@{@"userID":username1,
+                                                                             @"token":token1,
+                                                                             @"extension":extension1}];
+                        [M185UserManager currentUser].switchAccount = @"0";
+                    }
+                } else {
+                    if ([M185SDK.delegate respondsToSelector:@selector(M185SDKLoginResultWithCode:Information:)]) {
+                        NSString *username1 = [NSString stringWithFormat:@"%@",content[@"data"][@"userID"]];
+                        NSString *token1 = [NSString stringWithFormat:@"%@",content[@"data"][@"token"]];
+                        NSString *extension1 = @"";
+                        [M185SDK.delegate M185SDKLoginResultWithCode:code
+                                                         Information:@{@"userID":username1,
+                                                                       @"token":token1,
+                                                                       @"extension":extension1}];
+                    }
                 }
+                
+                
+                
             } else {
                 if ([M185SDK.delegate respondsToSelector:@selector(M185SDKLoginResultWithCode:Information:)]) {
-                    [M185SDK.delegate M185SDKLoginResultWithCode:code Information:@{@"msg":@"登录失败"}];
+                    [M185SDK.delegate M185SDKLoginResultWithCode:code Information:@{@"msg":content}];
                     [M185SDKManager logOut];
                 }
             }
@@ -152,6 +174,9 @@ static BOOL m185_PayStart = NO;
 
 /** 上报数据 */
 + (void)submitGameData:(id)data {
+    if ([M185UserManager currentUser].userID == nil) {
+        return;
+    }
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     NSArray *paramArray = @[@"appID",@"channelID",@"deviceID",@"opType",
                             @"roleID",@"roleLevel",@"roleName",@"serverID",
@@ -198,6 +223,11 @@ static BOOL m185_PayStart = NO;
             NSString *state = content[@"state"];
             if (state.integerValue == 1) {
                 syLog(@"上报数据成功  == %@",content);
+                NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"M185Config" ofType:@"plist"]];
+                NSNumber *debug = dict[@"Debug"];
+                if (debug.boolValue) {
+                    M185Message(([NSString stringWithFormat:@"上报数据成功%@",[data description]]));
+                }
             } else {
                 syLog(@"上报数据失败  == %@",content);
             }
@@ -220,6 +250,7 @@ static BOOL m185_PayStart = NO;
     }
     
     if (m185_PayStart) {
+        
         return;
     }
     
@@ -297,13 +328,18 @@ static BOOL m185_PayStart = NO;
                 config.M185SDK_extension = m185_extension;
                 [M185PayManager payStartWithConfig:config];
             } else {
-                syLog(@"支付失败  == %@",content);
+                if ([M185SDK.delegate respondsToSelector:@selector(M185SDKPayResultWithStatus:Information:)]) {
+                    [M185SDK.delegate M185SDKPayResultWithStatus:(CODE_PAY_FAIL) Information:@{@"msg":@"支付失败",@"code":content[@"state"]}];
+                }
             }
         }
     }, ^(id failure, NSDictionary *content) {
         Stop_network;
         m185_PayStart = NO;
         M185Message(@"系统维护中");
+        if ([M185SDK.delegate respondsToSelector:@selector(M185SDKPayResultWithStatus:Information:)]) {
+            [M185SDK.delegate M185SDKPayResultWithStatus:(CODE_PAY_UNKNOWN) Information:@{@"msg":@"系统维护中"}];
+        }
         if (content) {
             syLog(@"支付失败 == %@",content);
         }
