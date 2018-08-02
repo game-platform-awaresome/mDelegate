@@ -11,6 +11,7 @@
 
 @interface M185PayConfig : NSObject
 
+
 @property (strong, nonatomic) NSString *productID;              //商品ID
 @property (strong, nonatomic) NSString *productName;            //商品名称
 @property (strong, nonatomic) NSString *productDesc;             //商品描述
@@ -23,6 +24,9 @@
 @property (strong, nonatomic) NSString *serverID;               //服务器ID
 @property (strong, nonatomic) NSString *serverName;             //服务器名称
 @property (strong, nonatomic) NSString *extension;              //透传参数
+
+@property (strong, nonatomic) NSString *notifyUrl;              //预留URL
+
 
 @property (strong, nonatomic) NSString *reservedParam1;         //预留参数1
 @property (strong, nonatomic) NSString *reservedParam2;         //预留参数2

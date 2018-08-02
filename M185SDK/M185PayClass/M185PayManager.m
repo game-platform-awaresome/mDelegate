@@ -14,7 +14,7 @@
 
 + (void)payStartWithConfig:(M185PayConfig *)config {
 //    [M185CustomServersManager pay:config];
-    NSLog(@"子SDK 发起 支付");
+//    NSLog(@"子SDK 发起 支付");
     if ([config isKindOfClass:[M185PayConfig class]]) {
         Class SY185SDK = NSClassFromString(@"SY185SDK");
         if (SY185SDK) {
