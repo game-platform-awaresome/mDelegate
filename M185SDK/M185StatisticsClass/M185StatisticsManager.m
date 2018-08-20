@@ -14,6 +14,8 @@
 
 + (void)submitDataWith:(M185SubmitData *)data {
     
+    NSLog(@"上报数据  == %@",data);
+    
     [M185CustomServersManager submitGameData:data];
     
     [M185StatisticsManager submitChildSDKData:data];

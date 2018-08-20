@@ -32,6 +32,9 @@
                 syLog(@"\nextenison == %@",extension);
                 
                 func(SY185SDK,selector, config.serverID,config.serverName,config.roleID,config.roleName,config.productID,config.productName,config.amount,extension);
+                
+                
+                
             }
         } else {
             M185Message(@"未找到子SDK");

@@ -50,7 +50,7 @@ static const CGFloat M185DefaultDetailsLabelFontSize = 12.f;
 @end
 
 
-@interface MBProgressHUDRoundedButton : UIButton
+@interface M185ProgressHUDRoundedButton : UIButton
 @end
 
 
@@ -348,7 +348,7 @@ static const CGFloat M185DefaultDetailsLabelFontSize = 12.f;
     detailsLabel.backgroundColor = [UIColor clearColor];
     _detailsLabel = detailsLabel;
 
-    UIButton *button = [MBProgressHUDRoundedButton buttonWithType:UIButtonTypeCustom];
+    UIButton *button = [M185ProgressHUDRoundedButton buttonWithType:UIButtonTypeCustom];
     button.titleLabel.textAlignment = NSTextAlignmentCenter;
     button.titleLabel.font = [UIFont boldSystemFontOfSize:M185DefaultDetailsLabelFontSize];
     [button setTitleColor:defaultColor forState:UIControlStateNormal];
@@ -377,7 +377,7 @@ static const CGFloat M185DefaultDetailsLabelFontSize = 12.f;
 - (void)updateIndicators {
     UIView *indicator = self.indicator;
     BOOL isActivityIndicator = [indicator isKindOfClass:[UIActivityIndicatorView class]];
-    BOOL isRoundIndicator = [indicator isKindOfClass:[MBRoundProgressView class]];
+    BOOL isRoundIndicator = [indicator isKindOfClass:[M185RoundProgressView class]];
 
     M185ProgressHUDMode mode = self.mode;
     if (mode == M185ProgressHUDModeIndeterminate) {
@@ -392,18 +392,18 @@ static const CGFloat M185DefaultDetailsLabelFontSize = 12.f;
     else if (mode == M185ProgressHUDModeDeterminateHorizontalBar) {
         // Update to bar determinate indicator
         [indicator removeFromSuperview];
-        indicator = [[MBBarProgressView alloc] init];
+        indicator = [[M185BarProgressView alloc] init];
         [self.bezelView addSubview:indicator];
     }
     else if (mode == M185ProgressHUDModeDeterminate || mode == M185ProgressHUDModeAnnularDeterminate) {
         if (!isRoundIndicator) {
             // Update to determinante indicator
             [indicator removeFromSuperview];
-            indicator = [[MBRoundProgressView alloc] init];
+            indicator = [[M185RoundProgressView alloc] init];
             [self.bezelView addSubview:indicator];
         }
         if (mode == M185ProgressHUDModeAnnularDeterminate) {
-            [(MBRoundProgressView *)indicator setAnnular:YES];
+            [(M185RoundProgressView *)indicator setAnnular:YES];
         }
     } 
     else if (mode == M185ProgressHUDModeCustomView && self.customView != indicator) {
@@ -459,31 +459,31 @@ static const CGFloat M185DefaultDetailsLabelFontSize = 12.f;
         if (appearance.color == nil) {
             ((UIActivityIndicatorView *)indicator).color = color;
         }
-    } else if ([indicator isKindOfClass:[MBRoundProgressView class]]) {
-        MBRoundProgressView *appearance = nil;
+    } else if ([indicator isKindOfClass:[M185RoundProgressView class]]) {
+        M185RoundProgressView *appearance = nil;
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < 90000
-        appearance = [MBRoundProgressView appearanceWhenContainedIn:[M185ProgressHUD class], nil];
+        appearance = [M185RoundProgressView appearanceWhenContainedIn:[M185ProgressHUD class], nil];
 #else
         appearance = [MBRoundProgressView appearanceWhenContainedInInstancesOfClasses:@[[MBProgressHUD class]]];
 #endif
         if (appearance.progressTintColor == nil) {
-            ((MBRoundProgressView *)indicator).progressTintColor = color;
+            ((M185RoundProgressView *)indicator).progressTintColor = color;
         }
         if (appearance.backgroundTintColor == nil) {
-            ((MBRoundProgressView *)indicator).backgroundTintColor = [color colorWithAlphaComponent:0.1];
+            ((M185RoundProgressView *)indicator).backgroundTintColor = [color colorWithAlphaComponent:0.1];
         }
-    } else if ([indicator isKindOfClass:[MBBarProgressView class]]) {
-        MBBarProgressView *appearance = nil;
+    } else if ([indicator isKindOfClass:[M185BarProgressView class]]) {
+        M185BarProgressView *appearance = nil;
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < 90000
-        appearance = [MBBarProgressView appearanceWhenContainedIn:[M185ProgressHUD class], nil];
+        appearance = [M185BarProgressView appearanceWhenContainedIn:[M185ProgressHUD class], nil];
 #else
         appearance = [MBBarProgressView appearanceWhenContainedInInstancesOfClasses:@[[MBProgressHUD class]]];
 #endif
         if (appearance.progressColor == nil) {
-            ((MBBarProgressView *)indicator).progressColor = color;
+            ((M185BarProgressView *)indicator).progressColor = color;
         }
         if (appearance.lineColor == nil) {
-            ((MBBarProgressView *)indicator).lineColor = color;
+            ((M185BarProgressView *)indicator).lineColor = color;
         }
     } else {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000 || TARGET_OS_TV
@@ -824,7 +824,7 @@ static const CGFloat M185DefaultDetailsLabelFontSize = 12.f;
 @end
 
 
-@implementation MBRoundProgressView
+@implementation M185RoundProgressView
 
 #pragma mark - Lifecycle
 
@@ -945,7 +945,7 @@ static const CGFloat M185DefaultDetailsLabelFontSize = 12.f;
 @end
 
 
-@implementation MBBarProgressView
+@implementation M185BarProgressView
 
 #pragma mark - Lifecycle
 
@@ -1435,7 +1435,7 @@ static const CGFloat M185DefaultDetailsLabelFontSize = 12.f;
 
 @end
 
-@implementation MBProgressHUDRoundedButton
+@implementation M185ProgressHUDRoundedButton
 
 #pragma mark - Lifecycle
 

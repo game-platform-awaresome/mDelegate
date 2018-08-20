@@ -33,6 +33,23 @@ int postRequest(id param, id url, NetWorkSuccessBlock success, NetWorkFailureBlo
     }
     request.timeoutInterval = 15.f;
     [request setHTTPMethod:@"POST"];
+    
+//    NSError *error = nil;
+//    id obj = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+//    if (error) {
+//        NSLog(@"error === %@",error.localizedDescription);
+//    } else {
+//        if (obj && [obj isKindOfClass:[NSDictionary class]]) {
+//            NSLog(@"%@",obj);
+//        } else {
+//            NSLog(@"obj = %@",[obj description]);
+//        }
+//    }
+
+    
+//    const char * string = "adf";
+    
+    
 
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error == nil) {

@@ -320,7 +320,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * A progress view for showing definite progress by filling up a circle (pie chart).
  */
-@interface MBRoundProgressView : UIView 
+@interface M185RoundProgressView : UIView 
 
 /**
  * Progress (0.0 to 1.0)
@@ -351,7 +351,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * A flat bar progress view. 
  */
-@interface MBBarProgressView : UIView
+@interface M185BarProgressView : UIView
 
 /**
  * Progress (0.0 to 1.0)

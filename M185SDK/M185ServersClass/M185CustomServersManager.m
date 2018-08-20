@@ -191,8 +191,8 @@ static BOOL m185_PayStart = NO;
         [dict setObject:[NSString stringWithFormat:@"%lu",submitdata.type] forKey:@"opType"];
         
         [dict setObject:submitdata.roleID forKey:@"roleID"];
-        [dict setObject:submitdata.roleName forKey:@"roleLevel"];
-        [dict setObject:submitdata.roleLevel forKey:@"roleName"];
+        [dict setObject:submitdata.roleLevel forKey:@"roleLevel"];
+        [dict setObject:submitdata.roleName forKey:@"roleName"];
         [dict setObject:submitdata.serverID forKey:@"serverID"];
         
         [dict setObject:submitdata.serverName forKey:@"serverName"];
@@ -288,11 +288,15 @@ static BOOL m185_PayStart = NO;
     [dict setObject:config.serverName ?: @"" forKey:@"serverName"];
     [dict setObject:config.extension ?: @"" forKey:@"extension"];
     
-    [dict setObject:config.notifyUrl forKey:@"notifyUrl"];
     [dict setObject:M185SDK.RH_appID forKey:@"appID"];
     [dict setObject:M185SDK.RH_channelID forKey:@"channelID"];
     [dict setObject:@"md5" forKey:@"signType"];
     
+    [dict setObject:@"2" forKey:@"deviceType"];
+    
+    if (config.notifyUrl && config.notifyUrl.length > 0) {
+        [dict setObject:config.notifyUrl forKey:@"notifyUrl"];
+    }
     
     NSString* sign = [NSString stringWithFormat:@"userID=%@&productID=%@&productName=%@&productDesc=%@&money=%@&roleID=%@&roleName=%@&roleLevel=%@&serverID=%@&serverName=%@&extension=%@",
                       [M185UserManager currentUser].userID,
@@ -311,15 +315,17 @@ static BOOL m185_PayStart = NO;
         sign = [sign stringByAppendingString:[NSString stringWithFormat:@"&notifyUrl=%@", config.notifyUrl]];
     }
     
+
+    
     sign = [sign stringByAppendingString:M185SDK.RH_appKey];
     
     NSString *outString = [sign stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    CFStringRef escaped = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)outString, NULL, (CFStringRef)@"!*'();:@&=$,/?%#[]",kCFStringEncodingUTF8);
+    CFStringRef escaped = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)outString, NULL, (CFStringRef)@"!'();:@&=$,/?%#[]",kCFStringEncodingUTF8);
     outString = [NSString stringWithString:(__bridge NSString *)escaped];
     CFRelease(escaped);
     
+
     [dict setObject:CU7X000(outString) forKey:@"sign"];
-    
     
     Start_network;
     m185_PayStart = YES;
