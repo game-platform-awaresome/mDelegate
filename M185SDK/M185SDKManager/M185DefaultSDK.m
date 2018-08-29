@@ -8,13 +8,15 @@
 
 #import "M185DefaultSDK.h"
 #import <objc/runtime.h>
-#import "M185SDKManager.h"
+#import "BTWanRSDKManager.h"
 #import "M185CustomServersManager.h"
 #import "M185PayConfig.h"
 #import "M185UserManager.h"
 
+#import <BTWanSDK/BTWanSDK.h>
 
-@interface M185DefaultSDK ()
+
+@interface M185DefaultSDK ()<BTWanCallBackDelegate>
 
 
 @end
@@ -43,18 +45,11 @@ static M185DefaultSDK *_defaultSDK = nil;
         M185Message(@"clientKey 错误");
         return;
     }
+
+    syLog(@"初始化 子 SDK");
+    [BTWanSDK SDKShowMessage];
+    [BTWanSDK initWithAppID:M185SDK.appID Appkey:M185SDK.clientKey CallBackDelegate:self];
     
-    Class SY185SDK = NSClassFromString(@"SY185SDK");
-    if (SY185SDK) {
-        SEL selector = NSSelectorFromString(@"initWithAppID:Appkey:Delegate:UseWindow:");
-        IMP imp = [SY185SDK methodForSelector:selector];
-        void (*func)(id target, SEL, id appID,id appKey,id delegate,BOOL) = (void *)imp;
-        if ([SY185SDK respondsToSelector:selector]) {
-            func(SY185SDK, selector,M185SDK.appID,M185SDK.clientKey,self,YES);
-        }
-    } else {
-        M185Message(@"未找到子SDK");
-    }
 }
 
 + (void)initWithAppID:(id)appID Appkey:(id)appkey Delegate:(id)delegate UseWindow:(BOOL)useWindow {
@@ -121,15 +116,15 @@ static M185DefaultSDK *_defaultSDK = nil;
     return YES;
 }
 
+#pragma mark - child sdk delegate
+- (void)BTWanSDKInitCallBackWithSuccess:(BOOL)success Information:(NSDictionary * _Nonnull)dict {
 
-#pragma mark - delegate
-- (void)m185SDKInitCallBackWithSuccess:(BOOL)success withInformation:(NSDictionary *)dict {
-//    if ([M185SDK.delegate respondsToSelector:@selector(M185SDKInitCallBackWithSuccess:Information:)]) {
-//        [M185SDK.delegate M185SDKInitCallBackWithSuccess:success Information:dict];
-//    }
+    if ([M185SDK.delegate respondsToSelector:@selector(BTWanRSDKInitCallBackWithSuccess:Information:)]) {
+        [M185SDK.delegate BTWanRSDKInitCallBackWithSuccess:success Information:dict];
+    }
 }
 
-- (void)m185SDKLoginCallBackWithSuccess:(BOOL)success withInformation:(NSDictionary *)dict {
+- (void)BTWanSDKLoginCallBackWithSuccess:(BOOL)success Information:(NSDictionary * _Nonnull)dict {
     if (success) {
         NSString *token  = dict[@"token"];
         NSString *username = dict[@"username"];
@@ -140,27 +135,28 @@ static M185DefaultSDK *_defaultSDK = nil;
     }
 }
 
-- (void)m185SDKLogOutCallBackWithSuccess:(BOOL)success withInformation:(NSDictionary *)dict {
+- (void)BTWanSDKLogOutCallBackWithSuccess:(BOOL)success Information:(NSDictionary * _Nullable)dict {
     if (success) {
-        if ([M185SDK.delegate respondsToSelector:@selector(M185SDKLogOutCallBackWithSuccess:Information:)]) {
-            [M185SDK.delegate M185SDKLogOutCallBackWithSuccess:YES Information:@{@"msg":@"退出登录"}];
+        if ([M185SDK.delegate respondsToSelector:@selector(BTWanRSDKLogOutCallBackWithSuccess:Information:)]) {
+            [M185SDK.delegate BTWanRSDKLogOutCallBackWithSuccess:YES Information:@{@"msg":@"退出登录"}];
         }
     }
 }
 
-- (void)m185SDKRechargeCallBackWithSuccess:(BOOL)success withInformation:(NSDictionary *)dict {
+
+- (void)BTWanSDKRechargeCallBackWithSuccess:(BOOL)success Information:(NSDictionary * _Nonnull)dict {
     M185PayResultCode code = CODE_PAY_UNKNOWN;
     if (success) {
         code = CODE_PAY_SUCCESS;
     } else {
         code = CODE_PAY_FAIL;
     }
-    if ([M185SDK.delegate respondsToSelector:@selector(M185SDKPayResultWithStatus:Information:)]) {
-        [M185SDK.delegate  M185SDKPayResultWithStatus:code Information:dict];
+    if ([M185SDK.delegate respondsToSelector:@selector(BTWanRSDKPayResultWithStatus:Information:)]) {
+        [M185SDK.delegate  BTWanRSDKPayResultWithStatus:code Information:dict];
     }
 }
 
-- (void)m185SDKSwitchAccountCallBackWithSuccess:(BOOL)success withInformation:(NSDictionary *_Nonnull)dict {
+- (void)BTWanSDKSwitchAccountCallBackWithSuccess:(BOOL)success Information:(NSDictionary * _Nonnull)dict {
     [M185UserManager currentUser].switchAccount = @"1";
     NSString *token  = dict[@"token"];
     NSString *username = dict[@"username"];
@@ -168,6 +164,9 @@ static M185DefaultSDK *_defaultSDK = nil;
     [M185CustomServersManager getUserDataWithExtension:extension];
 }
 
+- (void)BTWanSDKGMFunctionSendPropsCallBackWithSuccess:(BOOL)success Information:(NSDictionary * _Nonnull)dict {
+
+}
 
 
 

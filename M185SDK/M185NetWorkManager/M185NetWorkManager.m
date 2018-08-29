@@ -8,7 +8,7 @@
 
 #import "M185NetWorkManager.h"
 #import <CommonCrypto/CommonDigest.h>
-#import "M185SDKManager.h"
+#import "BTWanRSDKManager.h"
 
 NSURL * cheackUrl(id url);
 NSData * encodeParam(id param , NSStringEncoding encodeing);
@@ -194,7 +194,7 @@ NSString *sign(NSDictionary *params, NSArray *keys) {
 //            [signString appendString:@"&"];
 //        }
     }];
-    NSString *key = [M185SDKManager sharedManager].RH_appKey;
+    NSString *key = [BTWanRSDKManager sharedManager].RH_appKey;
     [signString appendString:key];
     return md5String(signString);
 }

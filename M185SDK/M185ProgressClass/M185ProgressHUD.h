@@ -69,7 +69,7 @@ typedef NS_ENUM(NSInteger, M185ProgressHUDBackgroundStyle) {
     M185ProgressHUDBackgroundStyleBlur
 };
 
-typedef void (^M185ProgressHUDCompletionBlock)();
+typedef void (^M185ProgressHUDCompletionBlock)(void);
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -409,7 +409,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)showWhileExecuting:(SEL)method onTarget:(id)target withObject:(id)object animated:(BOOL)animated __attribute__((deprecated("Use GCD directly.")));
 - (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block __attribute__((deprecated("Use GCD directly.")));
+
 - (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block completionBlock:(nullable M185ProgressHUDCompletionBlock)completion __attribute__((deprecated("Use GCD directly.")));
+
 - (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block onQueue:(dispatch_queue_t)queue __attribute__((deprecated("Use GCD directly.")));
 - (void)showAnimated:(BOOL)animated whileExecutingBlock:(dispatch_block_t)block onQueue:(dispatch_queue_t)queue
      completionBlock:(nullable M185ProgressHUDCompletionBlock)completion __attribute__((deprecated("Use GCD directly.")));

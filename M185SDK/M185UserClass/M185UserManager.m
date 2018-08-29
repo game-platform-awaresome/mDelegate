@@ -9,7 +9,9 @@
 #import "M185UserManager.h"
 #import <objc/runtime.h>
 #import "M185NetWorkManager.h"
-#import "M185SDKManager.h"
+#import "BTWanRSDKManager.h"
+
+#import <BTWanSDK/BTWanSDK.h>
 
 static M185UserManager *_currentuser = nil;
 @implementation M185UserManager
@@ -26,33 +28,13 @@ static M185UserManager *_currentuser = nil;
 
 
 + (void)login {
-    Class SY185SDK = NSClassFromString(@"SY185SDK");
-    if (SY185SDK) {
-        SEL selector = NSSelectorFromString(@"showLoginView");
-        IMP imp = [SY185SDK methodForSelector:selector];
-        void (*func)(void) = (void *)imp;
-        if ([SY185SDK respondsToSelector:selector]) {
-            func();
-        }
-    } else {
-        M185Message(@"未找到子SDK");
-    }
+    syLog(@"登录");
+    [BTWanSDK login];
 }
 
 + (void)logOut {
-    Class SY185SDK = NSClassFromString(@"SY185SDK");
-    if (SY185SDK) {
-        SEL selector = NSSelectorFromString(@"signOut");
-        IMP imp = [SY185SDK methodForSelector:selector];
-        void (*func)(void) = (void *)imp;
-        if ([SY185SDK respondsToSelector:selector]) {
-            func();
-        }
-        [[M185UserManager currentUser] removeAllProperty];
-    } else {
-        M185Message(@"未找到子SDK");
-    }
-    
+    syLog(@"登出");
+    [BTWanSDK logOut];
 }
 
 + (void)showUserCenter {
@@ -72,25 +54,6 @@ static M185UserManager *_currentuser = nil;
 }
 
 - (void)removeAllProperty {
-//    // 获取当前类的所有属性
-//    unsigned int count;// 记录属性个数
-//    objc_property_t *properties = class_copyPropertyList([self class], &count);
-//    // 遍历
-//    NSMutableArray *names = [NSMutableArray array];
-//    for (int i = 0; i < count; i++) {
-//        // objc_property_t 属性类型
-//        objc_property_t property = properties[i];
-//        // 获取属性的名称 C语言字符串
-//        const char *cName = property_getName(property);
-//        // 转换为Objective C 字符串
-//        NSString *name = [NSString stringWithCString:cName encoding:NSUTF8StringEncoding];
-//        [names addObject:name];
-//    }
-//
-//    for (NSString *name in names) {
-//        [self setValue:nil forKey:name];
-//    }
-    
     self.userID = nil;
     self.token = nil;
     self.username = nil;

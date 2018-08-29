@@ -8,7 +8,7 @@
 
 #import "M185CustomServersManager.h"
 #import "M185NetWorkManager.h"
-#import "M185SDKManager.h"
+#import "BTWanRSDKManager.h"
 #import "M185UserManager.h"
 #import "M185PayManager.h"
 
@@ -73,9 +73,9 @@ static BOOL m185_PayStart = NO;
             NSString *state = content[@"state"];
             if (state.integerValue == 1) {
                 syLog(@"M185SDK -> 初始化成功");
-                if ([M185SDK.delegate respondsToSelector:@selector(M185SDKInitCallBackWithSuccess:Information:)]) {
-                    [M185SDK.delegate M185SDKInitCallBackWithSuccess:YES Information:@{@"msg":@"初始化成功"}];
-                }
+//                if ([M185SDK.delegate respondsToSelector:@selector(BTWanRSDKInitCallBackWithSuccess:Information:)]) {
+//                    [M185SDK.delegate BTWanRSDKInitCallBackWithSuccess:YES Information:@{@"msg":@"初始化成功"}];
+//                }
             } else {
                 syLog(@"M185SDK -> %@",content);
 //                if ([M185SDK.delegate respondsToSelector:@selector(M185SDKInitCallBackWithSuccess:Information:)]) {
@@ -114,12 +114,12 @@ static BOOL m185_PayStart = NO;
     [dict setObject:[M185CustomServersManager uniqueIdentifier] forKey:@"deviceID"];
     [dict setObject:@"1" forKey:@"sdkVersionCode"];
 
-    [M185SDKManager sharedManager].isLogin = YES;
+    [BTWanRSDKManager sharedManager].isLogin = YES;
     
     postRequest(dict, [NSString stringWithFormat:@"%@/user/getToken",M185SDK.urlString], ^(id success, NSDictionary *content) {
         if (content) {
             NSString *state = content[@"state"];
-            [M185SDKManager sharedManager].isLogin = NO;
+            [BTWanRSDKManager sharedManager].isLogin = NO;
             M185LoginResultCode code = CODE_LOGIN_FAIL;
             if (state.integerValue == 1) {
                 [M185UserManager setCurrentUserDataWith:content[@"data"]];
@@ -127,42 +127,42 @@ static BOOL m185_PayStart = NO;
                 code = CODE_LOGIN_SUCCESS;
                 
                 if ([M185UserManager currentUser].switchAccount.boolValue) {
-                    if ([M185SDK.delegate respondsToSelector:@selector(M185SDKSwitchAccountCallBackWith:Information:)]) {
+                    if ([M185SDK.delegate respondsToSelector:@selector(BTWanRSDKSwitchAccountCallBackWith:Information:)]) {
                         NSString *username1 = [NSString stringWithFormat:@"%@",content[@"data"][@"userID"]];
                         NSString *token1 = [NSString stringWithFormat:@"%@",content[@"data"][@"token"]];
                         NSString *extension1 = @"";
-                        [M185SDK.delegate M185SDKSwitchAccountCallBackWith:code
+                        [M185SDK.delegate BTWanRSDKSwitchAccountCallBackWith:code
                                                                Information:@{@"userID":username1,
                                                                              @"token":token1,
                                                                              @"extension":extension1}];
                         [M185UserManager currentUser].switchAccount = @"0";
                     }
                 } else {
-                    if ([M185SDK.delegate respondsToSelector:@selector(M185SDKLoginResultWithCode:Information:)]) {
+                    if ([M185SDK.delegate respondsToSelector:@selector(BTWanRSDKLoginResultWithCode:Information:)]) {
                         NSString *username1 = [NSString stringWithFormat:@"%@",content[@"data"][@"userID"]];
                         NSString *token1 = [NSString stringWithFormat:@"%@",content[@"data"][@"token"]];
                         NSString *extension1 = @"";
-                        [M185SDK.delegate M185SDKLoginResultWithCode:code
-                                                         Information:@{@"userID":username1,
-                                                                       @"token":token1,
-                                                                       @"extension":extension1}];
+                        [M185SDK.delegate BTWanRSDKLoginResultWithCode:code
+                                                           Information:@{@"userID":username1,
+                                                                         @"token":token1,
+                                                                        @"extension":extension1}];
                     }
                 }
                 
                 
                 
             } else {
-                if ([M185SDK.delegate respondsToSelector:@selector(M185SDKLoginResultWithCode:Information:)]) {
-                    [M185SDK.delegate M185SDKLoginResultWithCode:code Information:@{@"msg":content}];
-                    [M185SDKManager logOut];
+                if ([M185SDK.delegate respondsToSelector:@selector(BTWanRSDKLoginResultWithCode:Information:)]) {
+                    [M185SDK.delegate BTWanRSDKLoginResultWithCode:code Information:@{@"msg":content}];
+                    [BTWanRSDKManager logOut];
                 }
             }
         }
     }, ^(id failure, NSDictionary *content) {
         if (content) {
-            if ([M185SDK.delegate respondsToSelector:@selector(M185SDKLoginResultWithCode:Information:)]) {
-                [M185SDKManager logOut];
-                [M185SDK.delegate M185SDKLoginResultWithCode:CODE_LOGIN_FAIL Information:@{@"msg":@"连接服务器失败"}];
+            if ([M185SDK.delegate respondsToSelector:@selector(BTWanRSDKLoginResultWithCode:Information:)]) {
+                [BTWanRSDKManager logOut];
+                [M185SDK.delegate BTWanRSDKLoginResultWithCode:CODE_LOGIN_FAIL Information:@{@"msg":@"连接服务器失败"}];
             }
         }
     }, ^(id warning, NSDictionary *content) {
@@ -341,8 +341,8 @@ static BOOL m185_PayStart = NO;
                 config.M185SDK_extension = m185_extension;
                 [M185PayManager payStartWithConfig:config];
             } else {
-                if ([M185SDK.delegate respondsToSelector:@selector(M185SDKPayResultWithStatus:Information:)]) {
-                    [M185SDK.delegate M185SDKPayResultWithStatus:(CODE_PAY_FAIL) Information:@{@"msg":@"支付失败",@"code":content[@"state"]}];
+                if ([M185SDK.delegate respondsToSelector:@selector(BTWanRSDKPayResultWithStatus:Information:)]) {
+                    [M185SDK.delegate BTWanRSDKPayResultWithStatus:(CODE_PAY_FAIL) Information:@{@"msg":@"支付失败",@"code":content[@"state"]}];
                 }
             }
         }
@@ -350,8 +350,8 @@ static BOOL m185_PayStart = NO;
         Stop_network;
         m185_PayStart = NO;
         M185Message(@"系统维护中");
-        if ([M185SDK.delegate respondsToSelector:@selector(M185SDKPayResultWithStatus:Information:)]) {
-            [M185SDK.delegate M185SDKPayResultWithStatus:(CODE_PAY_UNKNOWN) Information:@{@"msg":@"系统维护中"}];
+        if ([M185SDK.delegate respondsToSelector:@selector(BTWanRSDKPayResultWithStatus:Information:)]) {
+            [M185SDK.delegate BTWanRSDKPayResultWithStatus:(CODE_PAY_UNKNOWN) Information:@{@"msg":@"系统维护中"}];
         }
         if (content) {
             syLog(@"支付失败 == %@",content);

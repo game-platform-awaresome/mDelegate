@@ -8,6 +8,7 @@
 
 #import "M185StatisticsManager.h"
 #import "M185CustomServersManager.h"
+#import <BTWanSDK/BTWanSDK.h>
 
 @implementation M185StatisticsManager
 
@@ -22,26 +23,16 @@
 }
 
 + (void)submitChildSDKData:(M185SubmitData *)data {
-    Class SY185SDK = NSClassFromString(@"SY185SDK");
-    if (SY185SDK) {
-        SEL selector = NSSelectorFromString(@"submitExtraDataWithType:ServerID:ServerName:RoleID:RoleName:RoleLevel:Money:VipLevel:");
-        IMP imp = [SY185SDK methodForSelector:selector];
-        void (*func)(id target,SEL ,NSUInteger,id,id,id,id,id,id,id) = (void *)imp;
-        if ([SY185SDK respondsToSelector:selector]) {
-            func(SY185SDK,
-                 selector,
-                 data.type,
-                 data.serverID,
-                 data.serverName,
-                 data.roleID,
-                 data.roleName,
-                 data.roleLevel,
-                 data.moneyNumber,
-                 data.vipLevel);
-        }
-    } else {
-        M185Message(@"未找到子SDK");
-    }
+    BTWanSubmitData *btwanData = [[BTWanSubmitData alloc] init];
+    btwanData.submitType = (NSUInteger)data.type;
+    btwanData.serverID = data.serverID;
+    btwanData.serverName = data.serverName;
+    btwanData.roleID = data.roleID;
+    btwanData.roleName = data.roleName;
+    btwanData.roleLevel = data.roleLevel;
+    btwanData.money = data.moneyNumber;
+    btwanData.vipLevel = data.vipLevel;
+    [BTWanSDK submitExtraData:btwanData];
 }
 
 

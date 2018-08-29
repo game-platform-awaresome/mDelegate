@@ -28,13 +28,13 @@
 		2FE91A8F2104DA97009F8C01 /* M185SubmitData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE91A8D2104DA97009F8C01 /* M185SubmitData.m */; };
 		2FE91A932104DC49009F8C01 /* M185StatisticsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91A912104DC49009F8C01 /* M185StatisticsManager.h */; };
 		2FE91A942104DC49009F8C01 /* M185StatisticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE91A922104DC49009F8C01 /* M185StatisticsManager.m */; };
-		2FE91A982104DF10009F8C01 /* M185CallBackDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91A972104DF10009F8C01 /* M185CallBackDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2FE91A982104DF10009F8C01 /* BTWanRSDKCallBackDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91A972104DF10009F8C01 /* BTWanRSDKCallBackDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2FE91A9B2104E16D009F8C01 /* M185DefaultSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE91A992104E16D009F8C01 /* M185DefaultSDK.h */; };
 		2FE91A9C2104E16D009F8C01 /* M185DefaultSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE91A9A2104E16D009F8C01 /* M185DefaultSDK.m */; };
 		2FF928C72105B17F004EC103 /* M185GMDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FF928C62105B17F004EC103 /* M185GMDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B5B12A022100761100C1EED5 /* M185SDK.h in Headers */ = {isa = PBXBuildFile; fileRef = B5B12A002100761100C1EED5 /* M185SDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B5B12A0B210076A600C1EED5 /* M185SDKManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B5B12A09210076A600C1EED5 /* M185SDKManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B5B12A0C210076A600C1EED5 /* M185SDKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B12A0A210076A600C1EED5 /* M185SDKManager.m */; };
+		B55B0ABF21366E3400331E63 /* BTWanRSDKManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B55B0ABD21366E3400331E63 /* BTWanRSDKManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B55B0AC021366E3400331E63 /* BTWanRSDKManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B55B0ABE21366E3400331E63 /* BTWanRSDKManager.m */; };
+		B5B12A022100761100C1EED5 /* BTWanRSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = B5B12A002100761100C1EED5 /* BTWanRSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5B12A3C210078D500C1EED5 /* M185AppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = B5B12A3B210078D500C1EED5 /* M185AppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5B12A512101BFD800C1EED5 /* M185NetWorkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B5B12A4F2101BFD800C1EED5 /* M185NetWorkManager.h */; };
 		B5B12A522101BFD800C1EED5 /* M185NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B12A502101BFD800C1EED5 /* M185NetWorkManager.m */; };
@@ -63,15 +63,16 @@
 		2FE91A8D2104DA97009F8C01 /* M185SubmitData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185SubmitData.m; sourceTree = "<group>"; };
 		2FE91A912104DC49009F8C01 /* M185StatisticsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185StatisticsManager.h; sourceTree = "<group>"; };
 		2FE91A922104DC49009F8C01 /* M185StatisticsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185StatisticsManager.m; sourceTree = "<group>"; };
-		2FE91A972104DF10009F8C01 /* M185CallBackDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185CallBackDelegate.h; sourceTree = "<group>"; };
+		2FE91A972104DF10009F8C01 /* BTWanRSDKCallBackDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTWanRSDKCallBackDelegate.h; sourceTree = "<group>"; };
 		2FE91A992104E16D009F8C01 /* M185DefaultSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185DefaultSDK.h; sourceTree = "<group>"; };
 		2FE91A9A2104E16D009F8C01 /* M185DefaultSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185DefaultSDK.m; sourceTree = "<group>"; };
 		2FF928C62105B17F004EC103 /* M185GMDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185GMDelegate.h; sourceTree = "<group>"; };
-		B5B129FD2100761100C1EED5 /* M185SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = M185SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5B12A002100761100C1EED5 /* M185SDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185SDK.h; sourceTree = "<group>"; };
+		B55B0ABD21366E3400331E63 /* BTWanRSDKManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTWanRSDKManager.h; sourceTree = "<group>"; };
+		B55B0ABE21366E3400331E63 /* BTWanRSDKManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTWanRSDKManager.m; sourceTree = "<group>"; };
+		B55B0AD12136990400331E63 /* BTWanSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BTWanSDK.framework; path = M185SDK/BTWanSDK.framework; sourceTree = SOURCE_ROOT; };
+		B5B129FD2100761100C1EED5 /* BTWanRSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BTWanRSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5B12A002100761100C1EED5 /* BTWanRSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTWanRSDK.h; sourceTree = "<group>"; };
 		B5B12A012100761100C1EED5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B5B12A09210076A600C1EED5 /* M185SDKManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185SDKManager.h; sourceTree = "<group>"; };
-		B5B12A0A210076A600C1EED5 /* M185SDKManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185SDKManager.m; sourceTree = "<group>"; };
 		B5B12A3B210078D500C1EED5 /* M185AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185AppDelegate.h; sourceTree = "<group>"; };
 		B5B12A4F2101BFD800C1EED5 /* M185NetWorkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M185NetWorkManager.h; sourceTree = "<group>"; };
 		B5B12A502101BFD800C1EED5 /* M185NetWorkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M185NetWorkManager.m; sourceTree = "<group>"; };
@@ -154,7 +155,7 @@
 		2FE91A962104DEED009F8C01 /* M185CallBack */ = {
 			isa = PBXGroup;
 			children = (
-				2FE91A972104DF10009F8C01 /* M185CallBackDelegate.h */,
+				2FE91A972104DF10009F8C01 /* BTWanRSDKCallBackDelegate.h */,
 			);
 			path = M185CallBack;
 			sourceTree = "<group>";
@@ -186,7 +187,7 @@
 		B5B129FE2100761100C1EED5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B5B129FD2100761100C1EED5 /* M185SDK.framework */,
+				B5B129FD2100761100C1EED5 /* BTWanRSDK.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -194,7 +195,7 @@
 		B5B129FF2100761100C1EED5 /* M185SDK */ = {
 			isa = PBXGroup;
 			children = (
-				B5B12A002100761100C1EED5 /* M185SDK.h */,
+				B5B12A002100761100C1EED5 /* BTWanRSDK.h */,
 				2FAC630021084BCE00CF0C88 /* M185Pch.pch */,
 				2FAC630121085B8600CF0C88 /* M185ProgressClass */,
 				2FAC62F92106CBDB00CF0C88 /* M185MessageManager */,
@@ -215,8 +216,9 @@
 		B5B12A082100766D00C1EED5 /* M185SDKManager */ = {
 			isa = PBXGroup;
 			children = (
-				B5B12A09210076A600C1EED5 /* M185SDKManager.h */,
-				B5B12A0A210076A600C1EED5 /* M185SDKManager.m */,
+				B55B0AD12136990400331E63 /* BTWanSDK.framework */,
+				B55B0ABD21366E3400331E63 /* BTWanRSDKManager.h */,
+				B55B0ABE21366E3400331E63 /* BTWanRSDKManager.m */,
 				2FE91A992104E16D009F8C01 /* M185DefaultSDK.h */,
 				2FE91A9A2104E16D009F8C01 /* M185DefaultSDK.m */,
 			);
@@ -249,7 +251,7 @@
 			files = (
 				2FE91A9B2104E16D009F8C01 /* M185DefaultSDK.h in Headers */,
 				2FE91A872104D684009F8C01 /* M185UserManager.h in Headers */,
-				B5B12A022100761100C1EED5 /* M185SDK.h in Headers */,
+				B5B12A022100761100C1EED5 /* BTWanRSDK.h in Headers */,
 				2FE91A932104DC49009F8C01 /* M185StatisticsManager.h in Headers */,
 				2FAC630521085B9800CF0C88 /* M185ProgressHUD.h in Headers */,
 				B5B12A512101BFD800C1EED5 /* M185NetWorkManager.h in Headers */,
@@ -257,7 +259,8 @@
 				2FF928C72105B17F004EC103 /* M185GMDelegate.h in Headers */,
 				2FE91A8B2104D9D1009F8C01 /* M185StatisticsDelegate.h in Headers */,
 				2FAC630921085DC700CF0C88 /* M185ProgressManager.h in Headers */,
-				2FE91A982104DF10009F8C01 /* M185CallBackDelegate.h in Headers */,
+				B55B0ABF21366E3400331E63 /* BTWanRSDKManager.h in Headers */,
+				2FE91A982104DF10009F8C01 /* BTWanRSDKCallBackDelegate.h in Headers */,
 				2FAC62FC2106CBF300CF0C88 /* M185MessageManager.h in Headers */,
 				2FE91A8E2104DA97009F8C01 /* M185SubmitData.h in Headers */,
 				B5B12A3C210078D500C1EED5 /* M185AppDelegate.h in Headers */,
@@ -265,7 +268,6 @@
 				2FE91A7A2104D141009F8C01 /* M185PayConfig.h in Headers */,
 				2FE91A802104D427009F8C01 /* M185PayDelegate.h in Headers */,
 				2FE91A832104D5A7009F8C01 /* M185PayManager.h in Headers */,
-				B5B12A0B210076A600C1EED5 /* M185SDKManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,7 +289,7 @@
 			);
 			name = M185SDK;
 			productName = M185SDK;
-			productReference = B5B129FD2100761100C1EED5 /* M185SDK.framework */;
+			productReference = B5B129FD2100761100C1EED5 /* BTWanRSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -338,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FE91A8F2104DA97009F8C01 /* M185SubmitData.m in Sources */,
+				B55B0AC021366E3400331E63 /* BTWanRSDKManager.m in Sources */,
 				2FAC62F72105D0D300CF0C88 /* M185CustomServersManager.m in Sources */,
 				2FE91A942104DC49009F8C01 /* M185StatisticsManager.m in Sources */,
 				B5B12A522101BFD800C1EED5 /* M185NetWorkManager.m in Sources */,
@@ -347,7 +350,6 @@
 				2FAC630A21085DC700CF0C88 /* M185ProgressManager.m in Sources */,
 				2FE91A882104D684009F8C01 /* M185UserManager.m in Sources */,
 				2FE91A9C2104E16D009F8C01 /* M185DefaultSDK.m in Sources */,
-				B5B12A0C210076A600C1EED5 /* M185SDKManager.m in Sources */,
 				2FE91A842104D5A7009F8C01 /* M185PayManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,8 +492,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = Sans.M185SDK;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = BTWanRSDK;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -516,8 +519,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = Sans.M185SDK;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = BTWanRSDK;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

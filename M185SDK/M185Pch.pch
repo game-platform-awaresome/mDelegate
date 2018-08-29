@@ -14,6 +14,8 @@
 #import "M185MessageManager.h"
 #import "M185ProgressManager.h"
 
+#define M185SDK BTWanRSDK
+
 #ifdef DEBUG
 #define syLog(format, ...) NSLog(format, ## __VA_ARGS__)
 #else
